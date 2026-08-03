@@ -151,6 +151,33 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(13,17,23,0.9
 .yt-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);padding:6px 10px;background:var(--bg3);border-top:1px solid var(--border);display:flex;align-items:center;gap:6px}
 .yt-label::before{content:'▶';color:var(--green);font-size:9px}
 
+/* SCREENSHOT GALLERY */
+.gallery{margin-top:1rem}
+.gallery-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:.6rem;display:flex;align-items:center;gap:6px}
+.gallery-label::before{content:'🖼';font-size:11px}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+@media(max-width:500px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+.gallery-thumb{aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;position:relative}
+.gallery-thumb:hover{border-color:var(--green);transform:scale(1.03);box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .2s}
+.gallery-thumb:hover img{opacity:.85}
+.gallery-thumb .zoom-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;background:rgba(13,17,23,.4)}
+.gallery-thumb:hover .zoom-icon{opacity:1}
+.zoom-icon svg{width:20px;height:20px;fill:white}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;padding:1rem}
+.lightbox.open{opacity:1;pointer-events:all}
+.lb-img{max-width:90vw;max-height:85vh;border-radius:10px;border:1px solid var(--border);object-fit:contain;transform:scale(.94);transition:transform .25s}
+.lightbox.open .lb-img{transform:scale(1)}
+.lb-close{position:absolute;top:1.25rem;right:1.5rem;font-family:'JetBrains Mono',monospace;font-size:22px;color:var(--muted);cursor:pointer;transition:color .2s;line-height:1}
+.lb-close:hover{color:var(--green)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:2rem;color:var(--muted);cursor:pointer;transition:color .2s;padding:.5rem 1rem;user-select:none}
+.lb-nav:hover{color:var(--green)}
+.lb-prev{left:.5rem}
+.lb-next{right:.5rem}
+.lb-counter{position:absolute;bottom:1.25rem;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);background:rgba(13,17,23,.7);padding:4px 12px;border-radius:100px}
+
 /* ── PROJECTS — expandable ── */
 .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
 @media(max-width:600px){.proj-grid{grid-template-columns:1fr}}
@@ -418,6 +445,31 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
           <iframe src="https://www.youtube.com/embed/fkdqFS1gF1c" title="PFE Platform Demo" allowfullscreen loading="lazy"></iframe>
         </div>
         <div class="yt-label">AI-Driven Internship Platform — Full Demo</div>
+        <div class="gallery">
+          <div class="gallery-label">Project Screenshots — GitOps · Grafana · Infrastructure</div>
+          <div class="gallery-grid">
+            <div class="gallery-thumb" onclick="openLightbox(0)">
+              <img src="https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879321259-c30ead8b-6acc-4d36-bcf9-fbd849370737_yjt3rs.png" alt="PFE Screenshot 1" loading="lazy"/>
+              <div class="zoom-icon"><svg viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0zm-2 4l4 4"/><circle cx="11" cy="11" r="6"/></svg></div>
+            </div>
+            <div class="gallery-thumb" onclick="openLightbox(1)">
+              <img src="https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879320462-07256102-2945-4d48-9209-05cb6c10b42d_i7lvub.png" alt="PFE Screenshot 2" loading="lazy"/>
+              <div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-thumb" onclick="openLightbox(2)">
+              <img src="https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879321793-1bcfe280-41da-43ab-98e6-5c61d18021fb_x4f7jz.png" alt="PFE Screenshot 3" loading="lazy"/>
+              <div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-thumb" onclick="openLightbox(3)">
+              <img src="https://res.cloudinary.com/cvnry3b8/image/upload/v1785776387/1774879322036-4b3e2d8c-dd88-48d9-9c45-5c33c94fb7ff_gdybqs.png" alt="PFE Screenshot 4" loading="lazy"/>
+              <div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-thumb" onclick="openLightbox(4)">
+              <img src="https://res.cloudinary.com/cvnry3b8/image/upload/v1785776387/1774879322244-a3744f0e-19c4-4892-ae42-1aa27e6ba86f_zu7p5n.png" alt="PFE Screenshot 5" loading="lazy"/>
+              <div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            </div>
+          </div>
+        </div>
         <div class="exp-tags">
           <span class="exp-tag">Spring Microservices</span><span class="exp-tag">Kafka</span>
           <span class="exp-tag">Flask</span><span class="exp-tag">AKS</span>
@@ -660,9 +712,18 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
 
 <footer>
   <div class="footer-prompt">
-    <span class="g">$</span> echo "Mohamed Ferjani © 2026 · Cloud &amp; DevOps Engineer"
+    <span class="g">$</span> echo "Mohamed Ferjani © 2026 · Cloud &amp; DevOps Engineer · Rades, Tunisia"
   </div>
 </footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+  <span class="lb-close" onclick="closeLightbox()">✕</span>
+  <span class="lb-nav lb-prev" onclick="lbNav(-1)">‹</span>
+  <img class="lb-img" id="lbImg" src="" alt=""/>
+  <span class="lb-nav lb-next" onclick="lbNav(1)">›</span>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
 
 <script>
 /* cursor glow */
@@ -707,6 +768,24 @@ const cIO=new IntersectionObserver(entries=>{
   });
 },{threshold:0.5});
 const sb=document.querySelector('.statbar');if(sb)cIO.observe(sb);
+
+/* lightbox */
+const lbImgs=[
+  "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879321259-c30ead8b-6acc-4d36-bcf9-fbd849370737_yjt3rs.png",
+  "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879320462-07256102-2945-4d48-9209-05cb6c10b42d_i7lvub.png",
+  "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879321793-1bcfe280-41da-43ab-98e6-5c61d18021fb_x4f7jz.png",
+  "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776387/1774879322036-4b3e2d8c-dd88-48d9-9c45-5c33c94fb7ff_gdybqs.png",
+  "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776387/1774879322244-a3744f0e-19c4-4892-ae42-1aa27e6ba86f_zu7p5n.png"
+];
+let lbIdx=0;
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lbImg');
+const lbCounter=document.getElementById('lbCounter');
+function openLightbox(i){lbIdx=i;lbImg.src=lbImgs[i];lbCounter.textContent=(i+1)+' / '+lbImgs.length;lb.classList.add('open');document.body.style.overflow='hidden';}
+function closeLightbox(){lb.classList.remove('open');document.body.style.overflow='';}
+function closeLightboxOnBg(e){if(e.target===lb)closeLightbox();}
+function lbNav(dir){lbIdx=(lbIdx+dir+lbImgs.length)%lbImgs.length;lbImg.src=lbImgs[lbIdx];lbCounter.textContent=(lbIdx+1)+' / '+lbImgs.length;}
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='ArrowRight')lbNav(1);if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='Escape')closeLightbox();});
 
 /* expandable project cards */
 function toggleProj(card){
