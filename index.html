@@ -27,11 +27,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-
 
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(13,17,23,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px;gap:0.5rem}
 .nav-logo{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);display:flex;align-items:center;gap:5px;flex-shrink:0}
 .blink{display:inline-block;width:7px;height:14px;background:var(--green);animation:blink 1s step-end infinite;vertical-align:middle}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links{display:flex;gap:1.5rem;list-style:none;flex:1;justify-content:flex-end}
 .nav-links a{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:.05em;transition:color .2s;position:relative;padding-bottom:2px}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--green);transform:scaleX(0);transition:transform .2s}
 .nav-links a:hover{color:var(--green)}
@@ -253,7 +253,8 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
 
 
 /* ── LANG SWITCHER ── */
-.lang-switcher{display:flex;align-items:center;gap:4px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:3px;margin-left:1rem;flex-shrink:0}
+.lang-switcher{display:flex;align-items:center;gap:4px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:3px;margin-left:0.75rem;flex-shrink:0}
+@media(max-width:768px){.nav-inner .lang-switcher{margin-left:auto}}
 .lang-btn{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:5px;border:none;background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;letter-spacing:.04em}
 .lang-btn.active{background:var(--green);color:#0d1117;font-weight:700}
 .lang-btn:not(.active):hover{color:var(--text)}
@@ -276,8 +277,8 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
       <li><a href="#education" data-i18n="nav.education">Education</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
-    <div class="lang-switcher"><button class="lang-btn active" onclick="setLang('en')">EN</button><button class="lang-btn" onclick="setLang('fr')">FR</button></div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <div class="lang-switcher"><button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button></div>
+    <button class="hamburger" id="hamburger" aria-label="Menu" style="margin-left:0.5rem">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -290,7 +291,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
   <a href="#projects" class="mobile-link" data-i18n="nav.projects">Projects</a>
   <a href="#education" class="mobile-link" data-i18n="nav.education">Education</a>
   <a href="#contact" class="mobile-link" data-i18n="nav.contact">Contact</a>
-  <div class="lang-switcher" style="margin-bottom:1rem"><button class="lang-btn active" onclick="setLang('en')">EN</button><button class="lang-btn" onclick="setLang('fr')">FR</button></div>
+  <div class="lang-switcher" style="margin-bottom:1rem"><button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button></div>
   <div class="mobile-menu-contacts">
     <a href="mailto:mohameed.ferjanii@gmail.com">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -753,9 +754,21 @@ document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',
 
 /* intersection observer — staggered */
 const io=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*70);io.unobserve(e.target);}});
-},{threshold:0.08});
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('vis'),i*60);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.05,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.chip,.exp-card,.proj-card,.edu-card,.contact-card').forEach(el=>io.observe(el));
+/* Ensure above-fold elements are shown immediately */
+setTimeout(()=>{
+  document.querySelectorAll('.chip,.exp-card,.proj-card,.edu-card,.contact-card').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top<window.innerHeight&&r.bottom>0)el.classList.add('vis');
+  });
+},100);
 
 /* language bars */
 const barIO=new IntersectionObserver(entries=>{
@@ -848,7 +861,7 @@ const translations = {
     'nav.contact': 'Contact',
     'hero.badge': 'Disponible pour des opportunités',
     'hero.role': 'Ingénieur Cloud & DevOps',
-    'hero.summary': 'Diplômé en ingénierie Cloud avec une expérience pratique en automatisation d'infrastructure, pipelines CI/CD et déploiement full-stack. Expérimenté en IaaS, Kubernetes, microservices et mobile — des clouds privés jusqu'à Google Play.',
+    'hero.summary': 'Diplômé en ingénierie Cloud avec une expérience pratique en automatisation d\u2019infrastructure, pipelines CI/CD et déploiement full-stack. Expérimenté en IaaS, Kubernetes, microservices et mobile — des clouds privés jusqu\u2019à Google Play.',
     'hero.cta1': 'Me Contacter',
     'hero.cta2': 'Voir Mon Travail',
     'pill.email': 'E-mail',
@@ -878,7 +891,7 @@ const translations = {
     'footer.text': 'Mohamed Ferjani © 2026 · Ingénieur Cloud & DevOps · Radès, Tunisie',
     'proj.hint': 'Cliquer pour voir les détails',
     'proj.openstack.desc': 'Infrastructure cloud privée sur OpenStack — IaaS avec orchestration Kubernetes, déploiements automatisés et observabilité en temps réel.',
-    'proj.cicd.desc': 'Pipeline DevOps complet du contrôle de source à la production — contrôle qualité, gestion d'artefacts, conteneurisation et orchestration.',
+    'proj.cicd.desc': 'Pipeline DevOps complet du contrôle de source à la production — contrôle qualité, gestion d\u2019artefacts, conteneurisation et orchestration.',
     'scroll': 'défiler',
   }
 };
@@ -899,7 +912,7 @@ function setLang(lang) {
 
   // Update all lang switcher buttons (desktop + mobile)
   document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 
   // Update html lang attribute
