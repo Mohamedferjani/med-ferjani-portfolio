@@ -251,6 +251,13 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
 .footer-prompt{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
 .footer-prompt .g{color:var(--green)}
 
+
+/* ── LANG SWITCHER ── */
+.lang-switcher{display:flex;align-items:center;gap:4px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:3px;margin-left:1rem;flex-shrink:0}
+.lang-btn{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:5px;border:none;background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;letter-spacing:.04em}
+.lang-btn.active{background:var(--green);color:#0d1117;font-weight:700}
+.lang-btn:not(.active):hover{color:var(--text)}
+
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 </style>
@@ -263,12 +270,13 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
   <div class="nav-inner">
     <div class="nav-logo">mferjani@cloud:~$<span class="blink"></span></div>
     <ul class="nav-links">
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="#education" data-i18n="nav.education">Education</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
+    <div class="lang-switcher"><button class="lang-btn active" onclick="setLang('en')">EN</button><button class="lang-btn" onclick="setLang('fr')">FR</button></div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -277,11 +285,12 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#skills" class="mobile-link">Skills</a>
-  <a href="#experience" class="mobile-link">Experience</a>
-  <a href="#projects" class="mobile-link">Projects</a>
-  <a href="#education" class="mobile-link">Education</a>
-  <a href="#contact" class="mobile-link">Contact</a>
+  <a href="#skills" class="mobile-link" data-i18n="nav.skills">Skills</a>
+  <a href="#experience" class="mobile-link" data-i18n="nav.experience">Experience</a>
+  <a href="#projects" class="mobile-link" data-i18n="nav.projects">Projects</a>
+  <a href="#education" class="mobile-link" data-i18n="nav.education">Education</a>
+  <a href="#contact" class="mobile-link" data-i18n="nav.contact">Contact</a>
+  <div class="lang-switcher" style="margin-bottom:1rem"><button class="lang-btn active" onclick="setLang('en')">EN</button><button class="lang-btn" onclick="setLang('fr')">FR</button></div>
   <div class="mobile-menu-contacts">
     <a href="mailto:mohameed.ferjanii@gmail.com">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -299,42 +308,42 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
   <div class="hero-grid"></div>
   <div class="hero-blob"></div>
   <div class="hero-inner">
-    <div class="hero-badge"><span class="pulse-dot"></span>Available for opportunities</div>
+    <div class="hero-badge"><span class="pulse-dot"></span><span data-i18n="hero.badge">Available for opportunities</span></div>
     <h1 class="hero-name">
       <span class="bracket">{</span><span class="nm">Mo</span><span class="nr">hamed</span><br>
       <span class="nr">Fer</span><span class="nm">jani</span><span class="bracket">}</span>
     </h1>
-    <p class="hero-role"><span class="pr">&gt; </span>Cloud &amp; DevOps Engineer</p>
-    <p class="hero-summary">Cloud Engineering graduate with hands-on experience in infrastructure automation, CI/CD pipelines, and full-stack deployment. Proven across IaaS, Kubernetes, microservices and mobile — from private cloud setups to Google Play production.</p>
+    <p class="hero-role"><span class="pr">&gt; </span><span data-i18n="hero.role">Cloud &amp; DevOps Engineer</span></p>
+    <p class="hero-summary"><span data-i18n="hero.summary">Cloud Engineering graduate with hands-on experience in infrastructure automation, CI/CD pipelines, and full-stack deployment. Proven across IaaS, Kubernetes, microservices and mobile — from private cloud setups to Google Play production.</span></p>
     <div class="hero-ctas">
-      <a class="btn-primary" href="#contact">Get in Touch</a>
-      <a class="btn-ghost" href="#experience">View My Work</a>
+      <a class="btn-primary" href="#contact" data-i18n="hero.cta1">Get in Touch</a>
+      <a class="btn-ghost" href="#experience" data-i18n="hero.cta2">View My Work</a>
     </div>
     <div class="hero-contacts-strip">
       <a class="contact-pill" href="mailto:mohameed.ferjanii@gmail.com">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        <span><span class="pill-label">Email</span><span class="pill-val">mohameed.ferjanii@gmail.com</span></span>
+        <span><span class="pill-label" data-i18n="pill.email">Email</span><span class="pill-val">mohameed.ferjanii@gmail.com</span></span>
       </a>
       <a class="contact-pill" href="https://www.linkedin.com/in/med-ferjani-44770320b/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        <span><span class="pill-label">LinkedIn</span><span class="pill-val">med-ferjani-44770320b</span></span>
+        <span><span class="pill-label" data-i18n="pill.linkedin">LinkedIn</span><span class="pill-val">med-ferjani-44770320b</span></span>
       </a>
       <span class="contact-pill">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        <span><span class="pill-label">Location</span><span class="pill-val">Rades, Tunisia</span></span>
+        <span><span class="pill-label" data-i18n="pill.location">Location</span><span class="pill-val">Rades, Tunisia</span></span>
       </span>
     </div>
   </div>
-  <div class="scroll-hint"><span>scroll</span><div class="scroll-arrow"></div></div>
+  <div class="scroll-hint"><span data-i18n="scroll">scroll</span><div class="scroll-arrow"></div></div>
 </section>
 
 <!-- STAT BAR -->
 <div class="statbar">
   <div class="statbar-inner">
-    <div class="stat"><div class="stat-num" data-target="6">0</div><div class="stat-label">Projects Shipped</div></div>
-    <div class="stat"><div class="stat-num" data-target="70" data-sfx="%">0%</div><div class="stat-label">Process Time Cut</div></div>
-    <div class="stat"><div class="stat-num" data-target="90" data-sfx="%">0%</div><div class="stat-label">ML Accuracy</div></div>
-    <div class="stat"><div class="stat-num" data-target="20" data-sfx="+">0+</div><div class="stat-label">Technologies</div></div>
+    <div class="stat"><div class="stat-num" data-target="6">0</div><div class="stat-label" data-i18n="stat.projects">Projects Shipped</div></div>
+    <div class="stat"><div class="stat-num" data-target="70" data-sfx="%">0%</div><div class="stat-label" data-i18n="stat.process">Process Time Cut</div></div>
+    <div class="stat"><div class="stat-num" data-target="90" data-sfx="%">0%</div><div class="stat-label" data-i18n="stat.ml">ML Accuracy</div></div>
+    <div class="stat"><div class="stat-num" data-target="20" data-sfx="+">0+</div><div class="stat-label" data-i18n="stat.tech">Technologies</div></div>
   </div>
 </div>
 
@@ -342,10 +351,10 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
 
   <!-- SKILLS -->
   <section class="section" id="skills">
-    <div class="sec-head"><span class="sec-kw">01.</span><span class="sec-title">Skills</span><div class="sec-line"></div></div>
+    <div class="sec-head"><span class="sec-kw">01.</span><span class="sec-title" data-i18n="sec.skills">Skills</span><div class="sec-line"></div></div>
     <div class="skills-cats">
       <div>
-        <div class="skill-cat-label">Infrastructure &amp; Orchestration</div>
+        <div class="skill-cat-label" data-i18n="skill.infra">Infrastructure &amp; Orchestration</div>
         <div class="chips">
           <span class="chip ci"><span class="cd"></span>Kubernetes</span>
           <span class="chip ci"><span class="cd"></span>Docker</span>
@@ -354,7 +363,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
         </div>
       </div>
       <div>
-        <div class="skill-cat-label">Cloud &amp; Messaging</div>
+        <div class="skill-cat-label" data-i18n="skill.cloud">Cloud &amp; Messaging</div>
         <div class="chips">
           <span class="chip ccl"><span class="cd"></span>Azure / AKS</span>
           <span class="chip ccl"><span class="cd"></span>Kafka</span>
@@ -362,7 +371,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
         </div>
       </div>
       <div>
-        <div class="skill-cat-label">CI/CD &amp; DevOps</div>
+        <div class="skill-cat-label" data-i18n="skill.cicd">CI/CD &amp; DevOps</div>
         <div class="chips">
           <span class="chip cc"><span class="cd"></span>Jenkins</span>
           <span class="chip cc"><span class="cd"></span>ArgoCD</span>
@@ -374,14 +383,14 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
         </div>
       </div>
       <div>
-        <div class="skill-cat-label">Observability</div>
+        <div class="skill-cat-label" data-i18n="skill.obs">Observability</div>
         <div class="chips">
           <span class="chip co"><span class="cd"></span>Prometheus</span>
           <span class="chip co"><span class="cd"></span>Grafana</span>
         </div>
       </div>
       <div>
-        <div class="skill-cat-label">Development</div>
+        <div class="skill-cat-label" data-i18n="skill.dev">Development</div>
         <div class="chips">
           <span class="chip cd2"><span class="cd"></span>Spring Boot</span>
           <span class="chip cd2"><span class="cd"></span>Angular</span>
@@ -399,7 +408,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
 
   <!-- EXPERIENCE -->
   <section class="section" id="experience">
-    <div class="sec-head"><span class="sec-kw">02.</span><span class="sec-title">Experience</span><div class="sec-line"></div></div>
+    <div class="sec-head"><span class="sec-kw">02.</span><span class="sec-title" data-i18n="sec.experience">Experience</span><div class="sec-line"></div></div>
     <div class="exp-tl">
 
       <!-- eIOU FREELANCE -->
@@ -557,7 +566,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
 
   <!-- PROJECTS -->
   <section class="section" id="projects">
-    <div class="sec-head"><span class="sec-kw">03.</span><span class="sec-title">Projects</span><div class="sec-line"></div></div>
+    <div class="sec-head"><span class="sec-kw">03.</span><span class="sec-title" data-i18n="sec.projects">Projects</span><div class="sec-line"></div></div>
     <div class="proj-grid">
 
       <!-- OPENSTACK -->
@@ -567,7 +576,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
           <div class="proj-name">OpenStack IaaS Cloud</div>
           <div class="proj-toggle"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></div>
         </div>
-        <div class="proj-desc">Private cloud infrastructure built on OpenStack — IaaS with Kubernetes orchestration, automated deployments, and real-time observability.</div>
+        <div class="proj-desc"><span data-i18n="proj.openstack.desc">Private cloud infrastructure built on OpenStack — IaaS with Kubernetes orchestration, automated deployments, and real-time observability.</span></div>
         <div class="proj-tags">
           <span class="proj-tag">OpenStack</span><span class="proj-tag">Kubernetes</span>
           <span class="proj-tag">Ansible</span><span class="proj-tag">Heat</span>
@@ -584,7 +593,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
             </ul>
           </div>
         </div>
-        <div class="proj-hint">Click to expand details</div>
+        <div class="proj-hint" data-i18n="proj.hint">Click to expand details</div>
       </div>
 
       <!-- CI/CD -->
@@ -594,7 +603,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
           <div class="proj-name">Automated CI/CD Pipeline</div>
           <div class="proj-toggle"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></div>
         </div>
-        <div class="proj-desc">Full end-to-end DevOps pipeline from source control to production — quality gates, artifact management, containerization, and orchestration.</div>
+        <div class="proj-desc"><span data-i18n="proj.cicd.desc">Full end-to-end DevOps pipeline from source control to production — quality gates, artifact management, containerization, and orchestration.</span></div>
         <div class="proj-tags">
           <span class="proj-tag">Jenkins</span><span class="proj-tag">Docker</span>
           <span class="proj-tag">SonarQube</span><span class="proj-tag">Nexus</span>
@@ -610,7 +619,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
             </ul>
           </div>
         </div>
-        <div class="proj-hint">Click to expand details</div>
+        <div class="proj-hint" data-i18n="proj.hint">Click to expand details</div>
       </div>
 
     </div>
@@ -618,7 +627,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
 
   <!-- EDUCATION -->
   <section class="section" id="education">
-    <div class="sec-head"><span class="sec-kw">04.</span><span class="sec-title">Education</span><div class="sec-line"></div></div>
+    <div class="sec-head"><span class="sec-kw">04.</span><span class="sec-title" data-i18n="sec.education">Education</span><div class="sec-line"></div></div>
     <div class="edu-list">
       <div class="edu-card">
         <div class="edu-icon">🎓</div>
@@ -649,7 +658,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
 
   <!-- LANGUAGES -->
   <section class="section" id="languages">
-    <div class="sec-head"><span class="sec-kw">05.</span><span class="sec-title">Languages</span><div class="sec-line"></div></div>
+    <div class="sec-head"><span class="sec-kw">05.</span><span class="sec-title" data-i18n="sec.languages">Languages</span><div class="sec-line"></div></div>
     <div class="lang-row">
       <div class="lang-card"><div class="lang-flag">🇹🇳</div><div class="lang-name">Arabic</div><div class="bar-wrap"><div class="bar" data-w="100%"></div></div><div class="lang-level">Native</div></div>
       <div class="lang-card"><div class="lang-flag">🇫🇷</div><div class="lang-name">French</div><div class="bar-wrap"><div class="bar" data-w="92%"></div></div><div class="lang-level">Bilingual</div></div>
@@ -659,10 +668,10 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
 
   <!-- CONTACT -->
   <section class="section" id="contact">
-    <div class="sec-head"><span class="sec-kw">06.</span><span class="sec-title">Contact</span><div class="sec-line"></div></div>
+    <div class="sec-head"><span class="sec-kw">06.</span><span class="sec-title" data-i18n="sec.contact">Contact</span><div class="sec-line"></div></div>
     <div class="contact-avail">
       <span class="avail-dot"></span>
-      <span class="avail-text"><strong>Open to work</strong> — Available for DevOps, Cloud Engineering, and freelance roles. Based in Tunisia, open to remote worldwide.</span>
+      <span class="avail-text"><strong data-i18n="avail.title">Open to work</strong> — <span data-i18n="avail.body">Available for DevOps, Cloud Engineering, and freelance roles. Based in Tunisia, open to remote worldwide.</span></span>
     </div>
     <div class="contact-grid">
       <a class="contact-card" href="mailto:mohameed.ferjanii@gmail.com">
@@ -672,7 +681,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
         <div>
           <div class="cc-label">Email</div>
           <div class="cc-val">mohameed.ferjanii@gmail.com</div>
-          <div class="cc-sub">Best way to reach me</div>
+          <div class="cc-sub" data-i18n="cc.email.sub">Best way to reach me</div>
         </div>
       </a>
       <a class="contact-card" href="https://www.linkedin.com/in/med-ferjani-44770320b/" target="_blank" rel="noopener">
@@ -682,7 +691,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
         <div>
           <div class="cc-label">LinkedIn</div>
           <div class="cc-val">med-ferjani-44770320b</div>
-          <div class="cc-sub">Connect professionally</div>
+          <div class="cc-sub" data-i18n="cc.linkedin.sub">Connect professionally</div>
         </div>
       </a>
       <a class="contact-card" href="https://github.com/Mohamedferjani" target="_blank" rel="noopener">
@@ -692,7 +701,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
         <div>
           <div class="cc-label">GitHub</div>
           <div class="cc-val">github.com/Mohamedferjani</div>
-          <div class="cc-sub">Browse my repos</div>
+          <div class="cc-sub" data-i18n="cc.github.sub">Browse my repos</div>
         </div>
       </a>
       <span class="contact-card">
@@ -702,7 +711,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
         <div>
           <div class="cc-label">Phone</div>
           <div class="cc-val">+216 23 909 866</div>
-          <div class="cc-sub">Rades, Tunisia</div>
+          <div class="cc-sub" data-i18n="cc.phone.sub">Rades, Tunisia</div>
         </div>
       </span>
     </div>
@@ -712,7 +721,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
 
 <footer>
   <div class="footer-prompt">
-    <span class="g">$</span> echo "Mohamed Ferjani © 2026 · Cloud &amp; DevOps Engineer · Rades, Tunisia"
+    <span class="g">$</span> echo "<span data-i18n="footer.text">Mohamed Ferjani © 2026 · Cloud &amp; DevOps Engineer · Rades, Tunisia</span>"
   </div>
 </footer>
 
@@ -787,18 +796,141 @@ function closeLightboxOnBg(e){if(e.target===lb)closeLightbox();}
 function lbNav(dir){lbIdx=(lbIdx+dir+lbImgs.length)%lbImgs.length;lbImg.src=lbImgs[lbIdx];lbCounter.textContent=(lbIdx+1)+' / '+lbImgs.length;}
 document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='ArrowRight')lbNav(1);if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='Escape')closeLightbox();});
 
+
+/* ── LANGUAGE SWITCHER ── */
+const translations = {
+  en: {
+    'nav.skills': 'Skills',
+    'nav.experience': 'Experience',
+    'nav.projects': 'Projects',
+    'nav.education': 'Education',
+    'nav.contact': 'Contact',
+    'hero.badge': 'Available for opportunities',
+    'hero.role': 'Cloud &amp; DevOps Engineer',
+    'hero.summary': 'Cloud Engineering graduate with hands-on experience in infrastructure automation, CI/CD pipelines, and full-stack deployment. Proven across IaaS, Kubernetes, microservices and mobile — from private cloud setups to Google Play production.',
+    'hero.cta1': 'Get in Touch',
+    'hero.cta2': 'View My Work',
+    'pill.email': 'Email',
+    'pill.linkedin': 'LinkedIn',
+    'pill.location': 'Location',
+    'stat.projects': 'Projects Shipped',
+    'stat.process': 'Process Time Cut',
+    'stat.ml': 'ML Accuracy',
+    'stat.tech': 'Technologies',
+    'sec.skills': 'Skills',
+    'sec.experience': 'Experience',
+    'sec.projects': 'Projects',
+    'sec.education': 'Education',
+    'sec.languages': 'Languages',
+    'sec.contact': 'Contact',
+    'skill.infra': 'Infrastructure & Orchestration',
+    'skill.cloud': 'Cloud & Messaging',
+    'skill.cicd': 'CI/CD & DevOps',
+    'skill.obs': 'Observability',
+    'skill.dev': 'Development',
+    'avail.title': 'Open to work',
+    'avail.body': 'Available for DevOps, Cloud Engineering, and freelance roles. Based in Tunisia, open to remote worldwide.',
+    'cc.email.sub': 'Best way to reach me',
+    'cc.linkedin.sub': 'Connect professionally',
+    'cc.github.sub': 'Browse my repos',
+    'cc.phone.sub': 'Rades, Tunisia',
+    'footer.text': 'Mohamed Ferjani © 2026 · Cloud & DevOps Engineer · Rades, Tunisia',
+    'proj.hint': 'Click to expand details',
+    'proj.openstack.desc': 'Private cloud infrastructure built on OpenStack — IaaS with Kubernetes orchestration, automated deployments, and real-time observability.',
+    'proj.cicd.desc': 'Full end-to-end DevOps pipeline from source control to production — quality gates, artifact management, containerization, and orchestration.',
+    'scroll': 'scroll',
+  },
+  fr: {
+    'nav.skills': 'Compétences',
+    'nav.experience': 'Expérience',
+    'nav.projects': 'Projets',
+    'nav.education': 'Formation',
+    'nav.contact': 'Contact',
+    'hero.badge': 'Disponible pour des opportunités',
+    'hero.role': 'Ingénieur Cloud & DevOps',
+    'hero.summary': 'Diplômé en ingénierie Cloud avec une expérience pratique en automatisation d'infrastructure, pipelines CI/CD et déploiement full-stack. Expérimenté en IaaS, Kubernetes, microservices et mobile — des clouds privés jusqu'à Google Play.',
+    'hero.cta1': 'Me Contacter',
+    'hero.cta2': 'Voir Mon Travail',
+    'pill.email': 'E-mail',
+    'pill.linkedin': 'LinkedIn',
+    'pill.location': 'Localisation',
+    'stat.projects': 'Projets Livrés',
+    'stat.process': 'Temps de Traitement',
+    'stat.ml': 'Précision ML',
+    'stat.tech': 'Technologies',
+    'sec.skills': 'Compétences',
+    'sec.experience': 'Expérience',
+    'sec.projects': 'Projets',
+    'sec.education': 'Formation',
+    'sec.languages': 'Langues',
+    'sec.contact': 'Contact',
+    'skill.infra': 'Infrastructure & Orchestration',
+    'skill.cloud': 'Cloud & Messagerie',
+    'skill.cicd': 'CI/CD & DevOps',
+    'skill.obs': 'Observabilité',
+    'skill.dev': 'Développement',
+    'avail.title': 'Disponible',
+    'avail.body': 'Disponible pour des postes DevOps, Cloud Engineering et missions freelance. Basé en Tunisie, ouvert au télétravail mondial.',
+    'cc.email.sub': 'Meilleure façon de me joindre',
+    'cc.linkedin.sub': 'Se connecter professionnellement',
+    'cc.github.sub': 'Voir mes dépôts',
+    'cc.phone.sub': 'Radès, Tunisie',
+    'footer.text': 'Mohamed Ferjani © 2026 · Ingénieur Cloud & DevOps · Radès, Tunisie',
+    'proj.hint': 'Cliquer pour voir les détails',
+    'proj.openstack.desc': 'Infrastructure cloud privée sur OpenStack — IaaS avec orchestration Kubernetes, déploiements automatisés et observabilité en temps réel.',
+    'proj.cicd.desc': 'Pipeline DevOps complet du contrôle de source à la production — contrôle qualité, gestion d'artefacts, conteneurisation et orchestration.',
+    'scroll': 'défiler',
+  }
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = translations[lang];
+
+  // Update all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) {
+      el.innerHTML = t[key];
+    }
+  });
+
+  // Update all lang switcher buttons (desktop + mobile)
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+  });
+
+  // Update html lang attribute
+  document.documentElement.lang = lang;
+
+  // Update page title
+  document.title = lang === 'fr'
+    ? 'Mohamed Ferjani · Ingénieur Cloud & DevOps'
+    : 'Mohamed Ferjani · Cloud & DevOps Engineer';
+
+  // Reset proj-hint for any expanded cards back to correct language
+  document.querySelectorAll('.proj-card.expanded .proj-hint').forEach(h => {
+    h.textContent = lang === 'fr' ? 'Cliquer pour réduire' : 'Click to collapse';
+  });
+  document.querySelectorAll('.proj-card:not(.expanded) .proj-hint').forEach(h => {
+    h.textContent = t['proj.hint'];
+  });
+}
+
 /* expandable project cards */
 function toggleProj(card){
   const isOpen=card.classList.contains('expanded');
   document.querySelectorAll('.proj-card').forEach(c=>{
     c.classList.remove('expanded');
     const hint=c.querySelector('.proj-hint');
-    if(hint)hint.textContent='Click to expand details';
+    if(hint)hint.textContent=currentLang==='fr'?'Cliquer pour voir les détails':'Click to expand details';
   });
   if(!isOpen){
     card.classList.add('expanded');
     const hint=card.querySelector('.proj-hint');
-    if(hint)hint.textContent='Click to collapse';
+    if(hint)hint.textContent=currentLang==='fr'?'Cliquer pour réduire':'Click to collapse';
   }
 }
 </script>
