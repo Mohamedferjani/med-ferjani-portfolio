@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mohamed Ferjani · Cloud & DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;
+  --text:#e6edf3;--muted:#8b949e;
+  --green:#39d353;--green-dim:#1a4731;
+  --blue:#58a6ff;--purple:#bc8cff;--orange:#f78166;--teal:#39d3d3;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+/* CURSOR GLOW — desktop only */
+#glow{position:fixed;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(57,211,83,0.05) 0%,transparent 65%);pointer-events:none;transform:translate(-50%,-50%);z-index:0;transition:left .08s,top .08s}
+@media(max-width:768px){#glow{display:none}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(13,17,23,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px;gap:0.5rem}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);display:flex;align-items:center;gap:5px;flex-shrink:0}
+.blink{display:inline-block;width:7px;height:14px;background:var(--green);animation:blink 1s step-end infinite;vertical-align:middle}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.nav-links{display:flex;gap:1.5rem;list-style:none;flex:1;justify-content:flex-end}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:.05em;transition:color .2s;position:relative;padding-bottom:2px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--green);transform:scaleX(0);transition:transform .2s}
+.nav-links a:hover{color:var(--green)}
+.nav-links a:hover::after{transform:scaleX(1)}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:transparent;z-index:400}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(13,17,23,0.97);backdrop-filter:blur(20px);z-index:250;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mobile-menu a{font-family:'JetBrains Mono',monospace;font-size:1.4rem;color:var(--muted);text-decoration:none;transition:color .2s;position:relative}
+.mobile-menu a::before{content:'> ';color:var(--green);opacity:0;transition:opacity .2s}
+.mobile-menu a:hover{color:var(--green)}
+.mobile-menu a:hover::before{opacity:1}
+.mobile-menu-contacts{display:flex;flex-direction:column;align-items:center;gap:0.75rem;margin-top:1rem;padding-top:1.5rem;border-top:1px solid var(--border);width:80%}
+.mobile-menu-contacts a{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s}
+.mobile-menu-contacts a:hover{color:var(--green)}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{display:flex}
+}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:7rem 1.5rem 3rem;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(48,54,61,.18) 0,rgba(48,54,61,.18) 1px,transparent 1px,transparent 44px),repeating-linear-gradient(90deg,rgba(48,54,61,.18) 0,rgba(48,54,61,.18) 1px,transparent 1px,transparent 44px);mask-image:radial-gradient(ellipse 80% 80% at 50% 40%,black 30%,transparent 100%)}
+.hero-blob{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(57,211,83,.07) 0%,transparent 60%);animation:floatBlob 7s ease-in-out infinite;pointer-events:none}
+@keyframes floatBlob{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.1)}}
+.hero-inner{position:relative;max-width:960px;margin:0 auto;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);border:1px solid var(--green-dim);background:rgba(26,71,49,.25);border-radius:100px;padding:5px 14px;margin-bottom:1.5rem;animation:fadeUp .6s ease both}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulseDot 2s ease infinite;flex-shrink:0}
+@keyframes pulseDot{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(57,211,83,.4)}50%{opacity:.7;box-shadow:0 0 0 6px rgba(57,211,83,0)}}
+.hero-name{font-family:'JetBrains Mono',monospace;font-size:clamp(2.2rem,6.5vw,4.8rem);font-weight:700;letter-spacing:-2px;line-height:1.08;margin-bottom:.8rem;animation:fadeUp .6s .08s ease both}
+.bracket{color:var(--muted)}.nm{color:var(--green)}.nr{color:var(--text)}
+.hero-role{font-family:'JetBrains Mono',monospace;font-size:clamp(.9rem,2vw,1.2rem);color:var(--blue);margin-bottom:1.6rem;animation:fadeUp .6s .16s ease both}
+.hero-role .pr{color:var(--muted)}
+.hero-summary{font-size:15px;color:var(--muted);max-width:540px;line-height:1.85;margin-bottom:2rem;animation:fadeUp .6s .24s ease both}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:2.5rem;animation:fadeUp .6s .32s ease both}
+.btn-primary{font-family:'JetBrains Mono',monospace;font-size:12px;padding:11px 24px;border-radius:8px;background:var(--green);color:#0d1117;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:opacity .2s,transform .2s,box-shadow .2s}
+.btn-primary:hover{opacity:.88;transform:translateY(-2px);box-shadow:0 10px 28px rgba(57,211,83,.28)}
+.btn-ghost{font-family:'JetBrains Mono',monospace;font-size:12px;padding:11px 24px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text);text-decoration:none;cursor:pointer;transition:border-color .2s,transform .2s,color .2s}
+.btn-ghost:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px)}
+.hero-contacts-strip{display:flex;flex-wrap:wrap;gap:10px;animation:fadeUp .6s .4s ease both}
+.contact-pill{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border:1px solid var(--border);border-radius:8px;background:var(--bg2);font-family:'JetBrains Mono',monospace;color:var(--text);text-decoration:none;transition:border-color .2s,color .2s,transform .2s,box-shadow .2s}
+.contact-pill:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px);box-shadow:0 6px 20px rgba(57,211,83,.1)}
+.contact-pill svg{width:15px;height:15px;flex-shrink:0}
+.pill-label{font-size:10px;color:var(--muted);display:block;line-height:1;margin-bottom:2px}
+.pill-val{font-size:12px;display:block;line-height:1.2}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.35;animation:scrollBounce 2.2s ease infinite}
+@keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+.scroll-hint span{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.1em}
+.scroll-arrow{width:13px;height:13px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg)}
+
+/* ── STAT BAR ── */
+.statbar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.statbar-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:1.4rem 1rem;border-right:1px solid var(--border);text-align:center;position:relative;overflow:hidden;transition:background .2s;cursor:default}
+.stat:last-child{border-right:none}
+.stat::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transition:transform .3s}
+.stat:hover{background:rgba(57,211,83,.03)}
+.stat:hover::after{transform:scaleX(1)}
+.stat-num{font-family:'JetBrains Mono',monospace;font-size:1.9rem;font-weight:700;color:var(--green);line-height:1}
+.stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:5px}
+@media(max-width:500px){.statbar-inner{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat:nth-child(3){border-top:1px solid var(--border)}.stat:nth-child(4){border-top:1px solid var(--border);border-right:none}}
+
+/* ── MAIN ── */
+.main{max-width:960px;margin:0 auto;padding:4rem 1.5rem}
+.section{margin-bottom:5.5rem}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:1.75rem}
+.sec-kw{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--green)}
+.sec-title{font-size:22px;font-weight:600;white-space:nowrap}
+.sec-line{flex:1;height:1px;background:linear-gradient(to right,var(--border),transparent)}
+
+/* ── SKILLS ── */
+.skills-cats{display:flex;flex-direction:column;gap:1.5rem}
+.skill-cat-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:'JetBrains Mono',monospace;font-size:12px;padding:7px 14px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text);display:inline-flex;align-items:center;gap:7px;transition:all .2s;cursor:default;opacity:0;transform:translateY(8px)}
+.chip.vis{opacity:1;transform:translateY(0)}
+.chip:hover{transform:translateY(-2px)}
+.cd{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.ci .cd{background:#39d353}.ci:hover{border-color:#39d353;color:#39d353}
+.cc .cd{background:#58a6ff}.cc:hover{border-color:#58a6ff;color:#58a6ff}
+.co .cd{background:#bc8cff}.co:hover{border-color:#bc8cff;color:#bc8cff}
+.cd2 .cd{background:#f78166}.cd2:hover{border-color:#f78166;color:#f78166}
+.ccl .cd{background:#39d3d3}.ccl:hover{border-color:#39d3d3;color:#39d3d3}
+
+/* ── EXPERIENCE ── */
+.exp-tl{position:relative;padding-left:2rem}
+.exp-tl::before{content:'';position:absolute;left:0;top:10px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--green),var(--green-dim) 70%,transparent)}
+@media(max-width:500px){.exp-tl{padding-left:1.25rem}}
+.exp-card{position:relative;margin-bottom:1.75rem;padding:1.5rem;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--green-dim);border-radius:10px;transition:border-left-color .2s,transform .2s,box-shadow .2s;opacity:0;transform:translateX(-16px)}
+.exp-card.vis{opacity:1;transform:translateX(0)}
+.exp-card:hover{border-left-color:var(--green);transform:translateX(4px);box-shadow:-4px 0 24px rgba(57,211,83,.08),0 4px 20px rgba(0,0,0,.25)}
+.exp-card::before{content:'';position:absolute;left:-2.6rem;top:1.7rem;width:10px;height:10px;border-radius:50%;background:var(--green);border:2px solid var(--bg);box-shadow:0 0 10px rgba(57,211,83,.5)}
+@media(max-width:500px){.exp-card::before{left:-2rem}}
+.exp-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.exp-title{font-size:14px;font-weight:600}
+.exp-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);background:var(--bg3);padding:3px 10px;border-radius:100px;white-space:nowrap}
+.exp-company{font-size:12px;color:var(--blue);margin-bottom:.9rem}
+.bullets{list-style:none;display:flex;flex-direction:column;gap:5px}
+.bullets li{font-size:13px;color:var(--muted);padding-left:1.2rem;position:relative;line-height:1.6}
+.bullets li::before{content:'▸';position:absolute;left:0;color:var(--green);font-size:10px;top:3px}
+.bullets em{color:var(--green);font-style:normal;font-weight:500}
+.exp-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.9rem}
+.exp-tag{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--teal)}
+
+/* VIDEO EMBED */
+.yt-wrap{margin-top:1rem;border-radius:8px;overflow:hidden;border:1px solid var(--border);position:relative;padding-top:56.25%}
+.yt-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.yt-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);padding:6px 10px;background:var(--bg3);border-top:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.yt-label::before{content:'▶';color:var(--green);font-size:9px}
+
+/* SCREENSHOT GALLERY */
+.gallery{margin-top:1rem}
+.gallery-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:.6rem;display:flex;align-items:center;gap:6px}
+.gallery-label::before{content:'🖼';font-size:11px}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+@media(max-width:500px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+.gallery-thumb{aspect-ratio:16/9;border-radius:6px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;position:relative}
+.gallery-thumb:hover{border-color:var(--green);transform:scale(1.03);box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .2s}
+.gallery-thumb:hover img{opacity:.85}
+.gallery-thumb .zoom-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;background:rgba(13,17,23,.4)}
+.gallery-thumb:hover .zoom-icon{opacity:1}
+.zoom-icon svg{width:20px;height:20px;fill:white}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;padding:1rem}
+.lightbox.open{opacity:1;pointer-events:all}
+.lb-img{max-width:90vw;max-height:85vh;border-radius:10px;border:1px solid var(--border);object-fit:contain;transform:scale(.94);transition:transform .25s}
+.lightbox.open .lb-img{transform:scale(1)}
+.lb-close{position:absolute;top:1.25rem;right:1.5rem;font-family:'JetBrains Mono',monospace;font-size:22px;color:var(--muted);cursor:pointer;transition:color .2s;line-height:1}
+.lb-close:hover{color:var(--green)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:2rem;color:var(--muted);cursor:pointer;transition:color .2s;padding:.5rem 1rem;user-select:none}
+.lb-nav:hover{color:var(--green)}
+.lb-prev{left:.5rem}
+.lb-next{right:.5rem}
+.lb-counter{position:absolute;bottom:1.25rem;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);background:rgba(13,17,23,.7);padding:4px 12px;border-radius:100px}
+
+/* ── PROJECTS — expandable ── */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;align-items:start}
+@media(max-width:600px){.proj-grid{grid-template-columns:1fr}}
+.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s;opacity:0;transform:translateY(18px);cursor:pointer;align-self:start}
+.proj-card.vis{opacity:1;transform:translateY(0)}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--purple),transparent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.proj-card:hover{border-color:#3c2f5a;box-shadow:0 14px 36px rgba(0,0,0,.4)}
+.proj-card:hover::before{transform:scaleX(1)}
+.proj-card.expanded{border-color:var(--purple)}
+.proj-card.expanded::before{transform:scaleX(1)}
+.proj-icon{font-size:24px;margin-bottom:.6rem}
+.proj-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.proj-name{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--purple);margin-bottom:.4rem}
+.proj-toggle{width:22px;height:22px;border-radius:50%;border:1px solid var(--border);background:var(--bg3);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s,transform .3s}
+.proj-card.expanded > .proj-header > .proj-toggle{transform:rotate(45deg);border-color:var(--purple)}
+.proj-toggle svg{width:10px;height:10px;fill:var(--muted)}
+.proj-desc{font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:.9rem}
+.proj-tags{display:flex;flex-wrap:wrap;gap:5px}
+.proj-tag{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--teal)}
+.proj-details{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.22,1,.36,1)}
+.proj-card.expanded > .proj-details{max-height:600px}
+.proj-details-inner{padding-top:1rem;border-top:1px solid var(--border);margin-top:1rem}
+.proj-detail-bullets{list-style:none;display:flex;flex-direction:column;gap:6px}
+.proj-detail-bullets li{font-size:12px;color:var(--muted);padding-left:1.1rem;position:relative;line-height:1.6}
+.proj-detail-bullets li::before{content:'▸';position:absolute;left:0;color:var(--purple);font-size:9px;top:3px}
+.proj-detail-bullets em{color:var(--purple);font-style:normal;font-weight:500}
+.proj-hint{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:.75rem;opacity:.6}
+
+/* ── FEATURED PROJECT ── */
+.feat-card{position:relative;background:linear-gradient(160deg,rgba(57,211,211,.06),transparent 45%),var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.75rem;margin-bottom:1.5rem;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s,border-color .2s}
+@media(max-width:500px){.feat-card{padding:1.25rem}}
+.feat-card.vis{opacity:1;transform:translateY(0)}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--teal),var(--green),transparent)}
+.feat-card:hover{border-color:#1f5c5c}
+.feat-top{display:flex;gap:1rem;align-items:center;margin-bottom:1rem}
+.feat-logo{width:56px;height:56px;border-radius:14px;flex-shrink:0;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.feat-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.35rem}
+.feat-badge,.feat-ver,.feat-plat{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:100px;border:1px solid}
+.feat-badge{color:var(--teal);border-color:rgba(57,211,211,.35);background:rgba(57,211,211,.08)}
+.feat-ver{color:var(--green);border-color:var(--green-dim);background:rgba(26,71,49,.25)}
+.feat-plat{color:var(--muted);border-color:var(--border)}
+.feat-name{font-family:'JetBrains Mono',monospace;font-size:clamp(1.1rem,3vw,1.4rem);font-weight:700;color:var(--text);line-height:1.2}
+.feat-tagline{font-size:13px;color:var(--teal);margin-top:2px}
+.feat-desc{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:1.1rem;max-width:760px}
+.feat-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:.6rem}
+.feat-links a{display:inline-flex;align-items:center;gap:8px}
+.feat-links svg{width:14px;height:14px;flex-shrink:0}
+.feat-note{font-size:11px;color:var(--muted);margin-bottom:1.4rem;opacity:.85}
+.shots{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:1.5rem}
+@media(max-width:700px){.shots{grid-template-columns:repeat(5,minmax(120px,1fr));overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}.shot{scroll-snap-align:start}}
+.shot{margin:0;cursor:pointer}
+.shot-frame{aspect-ratio:9/19;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--bg3);transition:border-color .2s,transform .2s,box-shadow .2s}
+.shot:hover .shot-frame{border-color:var(--teal);transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.45)}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.shot figcaption{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-align:center;margin-top:6px}
+.feat-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.25rem}
+@media(max-width:700px){.feat-cols{grid-template-columns:1fr}}
+.feat-col-title{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem}
+.feat-card .proj-detail-bullets li{font-size:12.5px}
+.feat-card .proj-detail-bullets li::before{color:var(--teal)}
+.feat-card .proj-detail-bullets em{color:var(--teal)}
+
+/* ── EDUCATION ── */
+.edu-list{display:flex;flex-direction:column;gap:1rem}
+.edu-card{display:flex;align-items:flex-start;gap:1.1rem;padding:1.25rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;transition:border-color .2s;opacity:0;transform:translateY(12px)}
+.edu-card.vis{opacity:1;transform:translateY(0)}
+.edu-card:hover{border-color:var(--orange)}
+.edu-icon{width:40px;height:40px;border-radius:8px;background:rgba(247,129,102,.1);border:1px solid rgba(247,129,102,.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.edu-body{flex:1}
+.edu-deg{font-size:14px;font-weight:600;margin-bottom:3px}
+.edu-school{font-size:12px;color:var(--muted)}
+.edu-year{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--orange);background:rgba(247,129,102,.08);padding:3px 10px;border-radius:100px;white-space:nowrap}
+
+/* ── LANGUAGES ── */
+.lang-row{display:flex;gap:1rem;flex-wrap:wrap}
+.lang-card{flex:1;min-width:130px;padding:1.25rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;text-align:center;transition:border-color .2s,transform .2s}
+.lang-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.lang-flag{font-size:26px;margin-bottom:.4rem}
+.lang-name{font-size:13px;font-weight:600}
+.bar-wrap{margin:.6rem 0 .3rem;height:3px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.bar{height:100%;border-radius:2px;background:var(--blue);width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.lang-level{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* ── CONTACT SECTION ── */
+.contact-avail{padding:1.25rem 1.5rem;background:rgba(57,211,83,.04);border:1px solid var(--green-dim);border-radius:10px;display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
+.avail-dot{width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulseDot 2s ease infinite}
+.avail-text{font-size:13px;color:var(--muted)}
+.avail-text strong{color:var(--green)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:500px){.contact-grid{grid-template-columns:1fr}}
+.contact-card{padding:1.5rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;display:flex;align-items:flex-start;gap:1rem;transition:border-color .2s,transform .2s,box-shadow .2s;text-decoration:none;color:inherit;opacity:0;transform:translateY(16px)}
+.contact-card.vis{opacity:1;transform:translateY(0)}
+.contact-card:hover{border-color:var(--green);transform:translateY(-3px);box-shadow:0 10px 30px rgba(57,211,83,.08)}
+.cc-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.cc-icon.g{background:rgba(57,211,83,.1);border:1px solid rgba(57,211,83,.2)}
+.cc-icon.b{background:rgba(88,166,255,.1);border:1px solid rgba(88,166,255,.2)}
+.cc-icon.o{background:rgba(247,129,102,.1);border:1px solid rgba(247,129,102,.2)}
+.cc-icon.p{background:rgba(188,140,255,.1);border:1px solid rgba(188,140,255,.2)}
+.cc-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cc-val{font-size:13px;font-weight:500;word-break:break-all}
+.cc-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
+.footer-prompt{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.footer-prompt .g{color:var(--green)}
+
+
+/* ── LANG SWITCHER ── */
+.lang-switcher{display:flex;align-items:center;gap:4px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:3px;margin-left:0.75rem;flex-shrink:0}
+@media(max-width:768px){.nav-inner .lang-switcher{margin-left:auto}}
+.lang-btn{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:5px;border:none;background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;letter-spacing:.04em}
+.lang-btn.active{background:var(--green);color:#0d1117;font-weight:700}
+.lang-btn:not(.active):hover{color:var(--text)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.hero,.statbar,#skills,#experience,#education,#languages,#contact,nav,footer{display:none!important}.chip,.exp-card,.feat-card,.proj-card,.edu-card,.contact-card{opacity:1!important;transform:none!important}</style>
+</head>
+<body>
+<div id="glow"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">mferjani@cloud:~$<span class="blink"></span></div>
+    <ul class="nav-links">
+      <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="#education" data-i18n="nav.education">Education</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="lang-switcher"><button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button></div>
+    <button class="hamburger" id="hamburger" aria-label="Menu" style="margin-left:0.5rem">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#skills" class="mobile-link" data-i18n="nav.skills">Skills</a>
+  <a href="#experience" class="mobile-link" data-i18n="nav.experience">Experience</a>
+  <a href="#projects" class="mobile-link" data-i18n="nav.projects">Projects</a>
+  <a href="#education" class="mobile-link" data-i18n="nav.education">Education</a>
+  <a href="#contact" class="mobile-link" data-i18n="nav.contact">Contact</a>
+  <div class="lang-switcher" style="margin-bottom:1rem"><button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button></div>
+  <div class="mobile-menu-contacts">
+    <a href="mailto:mohameed.ferjanii@gmail.com">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      mohameed.ferjanii@gmail.com
+    </a>
+    <a href="https://www.linkedin.com/in/med-ferjani-44770320b/" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="pulse-dot"></span><span data-i18n="hero.badge">Available for opportunities</span></div>
+    <h1 class="hero-name">
+      <span class="bracket">{</span><span class="nm">Mo</span><span class="nr">hamed</span><br>
+      <span class="nr">Fer</span><span class="nm">jani</span><span class="bracket">}</span>
+    </h1>
+    <p class="hero-role"><span class="pr">&gt; </span><span data-i18n="hero.role">Cloud &amp; DevOps Engineer</span></p>
+    <p class="hero-summary"><span data-i18n="hero.summary">Cloud Engineering graduate with hands-on experience in infrastructure automation, CI/CD pipelines, and full-stack deployment. Proven across IaaS, Kubernetes, serverless Azure, microservices and mobile — from private cloud setups to Google Play production.</span></p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#contact" data-i18n="hero.cta1">Get in Touch</a>
+      <a class="btn-ghost" href="#experience" data-i18n="hero.cta2">View My Work</a>
+    </div>
+    <div class="hero-contacts-strip">
+      <a class="contact-pill" href="mailto:mohameed.ferjanii@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <span><span class="pill-label" data-i18n="pill.email">Email</span><span class="pill-val">mohameed.ferjanii@gmail.com</span></span>
+      </a>
+      <a class="contact-pill" href="https://www.linkedin.com/in/med-ferjani-44770320b/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <span><span class="pill-label" data-i18n="pill.linkedin">LinkedIn</span><span class="pill-val">med-ferjani-44770320b</span></span>
+      </a>
+      <span class="contact-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span><span class="pill-label" data-i18n="pill.location">Location</span><span class="pill-val">Rades, Tunisia</span></span>
+      </span>
+    </div>
+  </div>
+  <div class="scroll-hint"><span data-i18n="scroll">scroll</span><div class="scroll-arrow"></div></div>
+</section>
+
+<!-- STAT BAR -->
+<div class="statbar">
+  <div class="statbar-inner">
+    <div class="stat"><div class="stat-num" data-target="7">0</div><div class="stat-label" data-i18n="stat.projects">Projects Shipped</div></div>
+    <div class="stat"><div class="stat-num" data-target="70" data-sfx="%">0%</div><div class="stat-label" data-i18n="stat.process">Process Time Cut</div></div>
+    <div class="stat"><div class="stat-num" data-target="90" data-sfx="%">0%</div><div class="stat-label" data-i18n="stat.ml">ML Accuracy</div></div>
+    <div class="stat"><div class="stat-num" data-target="20" data-sfx="+">0+</div><div class="stat-label" data-i18n="stat.tech">Technologies</div></div>
+  </div>
+</div>
+
+<main class="main">
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="sec-head"><span class="sec-kw">01.</span><span class="sec-title" data-i18n="sec.skills">Skills</span><div class="sec-line"></div></div>
+    <div class="skills-cats">
+      <div>
+        <div class="skill-cat-label" data-i18n="skill.infra">Infrastructure &amp; Orchestration</div>
+        <div class="chips">
+          <span class="chip ci"><span class="cd"></span>Kubernetes</span>
+          <span class="chip ci"><span class="cd"></span>Docker</span>
+          <span class="chip ci"><span class="cd"></span>Ansible</span>
+          <span class="chip ci"><span class="cd"></span>OpenStack</span>
+          <span class="chip ci"><span class="cd"></span>Terraform</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-label" data-i18n="skill.cloud">Cloud &amp; Messaging</div>
+        <div class="chips">
+          <span class="chip ccl"><span class="cd"></span>Azure / AKS</span>
+          <span class="chip ccl"><span class="cd"></span>Azure Functions</span>
+          <span class="chip ccl"><span class="cd"></span>Cosmos DB</span>
+          <span class="chip ccl"><span class="cd"></span>Event Grid</span>
+          <span class="chip ccl"><span class="cd"></span>Firebase</span>
+          <span class="chip ccl"><span class="cd"></span>Kafka</span>
+          <span class="chip ccl"><span class="cd"></span>Spring Microservices</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-label" data-i18n="skill.cicd">CI/CD &amp; DevOps</div>
+        <div class="chips">
+          <span class="chip cc"><span class="cd"></span>Jenkins</span>
+          <span class="chip cc"><span class="cd"></span>ArgoCD</span>
+          <span class="chip cc"><span class="cd"></span>GitHub Actions</span>
+          <span class="chip cc"><span class="cd"></span>Git</span>
+          <span class="chip cc"><span class="cd"></span>Nexus</span>
+          <span class="chip cc"><span class="cd"></span>SonarQube</span>
+          <span class="chip cc"><span class="cd"></span>GitOps</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-label" data-i18n="skill.obs">Observability</div>
+        <div class="chips">
+          <span class="chip co"><span class="cd"></span>Prometheus</span>
+          <span class="chip co"><span class="cd"></span>Grafana</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-label" data-i18n="skill.dev">Development</div>
+        <div class="chips">
+          <span class="chip cd2"><span class="cd"></span>Spring Boot</span>
+          <span class="chip cd2"><span class="cd"></span>Angular</span>
+          <span class="chip cd2"><span class="cd"></span>React</span>
+          <span class="chip cd2"><span class="cd"></span>Flutter</span>
+          <span class="chip cd2"><span class="cd"></span>Dart</span>
+          <span class="chip cd2"><span class="cd"></span>Python</span>
+          <span class="chip cd2"><span class="cd"></span>Node.js</span>
+          <span class="chip cd2"><span class="cd"></span>Flask</span>
+          <span class="chip cd2"><span class="cd"></span>Express</span>
+          <span class="chip cd2"><span class="cd"></span>MongoDB</span>
+          <span class="chip cd2"><span class="cd"></span>Symfony</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="sec-head"><span class="sec-kw">02.</span><span class="sec-title" data-i18n="sec.experience">Experience</span><div class="sec-line"></div></div>
+    <div class="exp-tl">
+
+      <!-- eIOU FREELANCE -->
+      <div class="exp-card">
+        <div class="exp-head">
+          <div class="exp-title" data-i18n="exp.eiou.title">eIOU Wallet — Flutter Mobile App (Freelance)</div>
+          <div class="exp-date" data-i18n="exp.eiou.date">Dec 2025 – Jun 2026</div>
+        </div>
+        <div class="exp-company" data-i18n="exp.eiou.company">eIOU Organization · Remote (US Client)</div>
+        <ul class="bullets" data-i18n-list="exp.eiou.bullets">
+          <li>Built a <em>privacy-focused mobile wallet</em> for the eIOU protocol from scratch using Flutter 3.35 / Dart 3.9, shipped to <em>Google Play Store</em></li>
+          <li>Implemented <em>QR code payments, NFC tap-to-pay</em>, contact management, transaction history with CSV export, and earnings analytics dashboard</li>
+          <li>Integrated <em>Tor (.onion) network support</em> via SOCKS5 proxy — privacy-first architecture for censored-network users</li>
+          <li>Architected clean 3-layer structure (Presentation / Domain / Data) with Provider state management and go_router navigation</li>
+          <li>Built full <em>CI/CD pipeline</em> with GitHub Actions: lint, tests, release AAB builds, auto-deploy to <em>Google Play internal track</em></li>
+          <li>Delivered <em>4 animated themes</em>, in-app shake-to-report bug system, secure local storage, and shipped <em>v1.3.1</em></li>
+        </ul>
+        <div class="yt-wrap">
+          <iframe src="https://www.youtube.com/embed/LmOOiWm1ek0" title="eIOU Wallet Demo" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="yt-label" data-i18n="exp.eiou.ytlabel">eIOU Wallet — App Demo</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Flutter</span><span class="exp-tag">Dart</span><span class="exp-tag">Android</span>
+          <span class="exp-tag">Google Play</span><span class="exp-tag">GitHub Actions</span>
+          <span class="exp-tag">NFC</span><span class="exp-tag">Tor</span><span class="exp-tag">CI/CD</span>
+        </div>
+      </div>
+
+      <!-- PFE B2M-IT -->
+      <div class="exp-card">
+        <div class="exp-head">
+          <div class="exp-title" data-i18n="exp.b2m.title">AI-Driven Microservices Web Platform (PFE)</div>
+          <div class="exp-date" data-i18n="exp.b2m.date">Feb 2025 – Sept 2025</div>
+        </div>
+        <div class="exp-company" data-i18n="exp.b2m.company">B2M-IT · Tunisia</div>
+        <ul class="bullets" data-i18n-list="exp.b2m.bullets">
+          <li>Designed and implemented platform automating the internship lifecycle, reducing manual process time by <em>70%</em></li>
+          <li>Integrated intelligent CV parsing &amp; scoring module achieving <em>90%+</em> accuracy in skills extraction</li>
+          <li>Built backend with <em>Spring Microservices</em>, <em>Kafka</em> for async messaging, and <em>Flask</em> for the AI/ML service layer</li>
+          <li>Deployed on AKS with GitOps + ArgoCD and secured CI/CD pipeline, cutting deployment time by <em>40%</em></li>
+        </ul>
+        <div class="yt-wrap">
+          <iframe src="https://www.youtube.com/embed/fkdqFS1gF1c" title="PFE Platform Demo" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="yt-label" data-i18n="exp.b2m.ytlabel">AI-Driven Internship Platform — Full Demo</div>
+        <div class="gallery">
+          <div class="gallery-label" data-i18n="exp.b2m.gallery">Project Screenshots — GitOps · Grafana · Infrastructure</div>
+          <div class="gallery-grid">
+            <div class="gallery-thumb" onclick="openLightbox(0)">
+              <img src="https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879321259-c30ead8b-6acc-4d36-bcf9-fbd849370737_yjt3rs.png" alt="PFE Screenshot 1" loading="lazy"/>
+              <div class="zoom-icon"><svg viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0zm-2 4l4 4"/><circle cx="11" cy="11" r="6"/></svg></div>
+            </div>
+            <div class="gallery-thumb" onclick="openLightbox(1)">
+              <img src="https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879320462-07256102-2945-4d48-9209-05cb6c10b42d_i7lvub.png" alt="PFE Screenshot 2" loading="lazy"/>
+              <div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-thumb" onclick="openLightbox(2)">
+              <img src="https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879321793-1bcfe280-41da-43ab-98e6-5c61d18021fb_x4f7jz.png" alt="PFE Screenshot 3" loading="lazy"/>
+              <div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-thumb" onclick="openLightbox(3)">
+              <img src="https://res.cloudinary.com/cvnry3b8/image/upload/v1785776387/1774879322036-4b3e2d8c-dd88-48d9-9c45-5c33c94fb7ff_gdybqs.png" alt="PFE Screenshot 4" loading="lazy"/>
+              <div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-thumb" onclick="openLightbox(4)">
+              <img src="https://res.cloudinary.com/cvnry3b8/image/upload/v1785776387/1774879322244-a3744f0e-19c4-4892-ae42-1aa27e6ba86f_zu7p5n.png" alt="PFE Screenshot 5" loading="lazy"/>
+              <div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            </div>
+          </div>
+        </div>
+        <div class="exp-tags">
+          <span class="exp-tag">Spring Microservices</span><span class="exp-tag">Kafka</span>
+          <span class="exp-tag">Flask</span><span class="exp-tag">AKS</span>
+          <span class="exp-tag">ArgoCD</span><span class="exp-tag">GitOps</span>
+          <span class="exp-tag">Angular</span><span class="exp-tag">CI/CD</span>
+        </div>
+      </div>
+
+      <!-- SMARTGALAXY -->
+      <div class="exp-card">
+        <div class="exp-head">
+          <div class="exp-title" data-i18n="exp.sg.title">Mobile App — Experts &amp; Influencers</div>
+          <div class="exp-date" data-i18n="exp.sg.date">Jun – Aug 2024</div>
+        </div>
+        <div class="exp-company" data-i18n="exp.sg.company">Startup SmartGalaxy · Tunisia</div>
+        <ul class="bullets" data-i18n-list="exp.sg.bullets">
+          <li>Released app connecting <em>50+</em> users with experts and influencers</li>
+          <li>Delivered secure messaging, scheduling, and service booking — improving user engagement by <em>30%</em></li>
+          <li>Built backend with <em>Node.js, Express &amp; MongoDB</em> — RESTful APIs, authentication, and real-time messaging</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Flutter</span><span class="exp-tag">Node.js</span>
+          <span class="exp-tag">Express</span><span class="exp-tag">MongoDB</span>
+        </div>
+      </div>
+
+      <!-- DSI -->
+      <div class="exp-card">
+        <div class="exp-head">
+          <div class="exp-title" data-i18n="exp.dsi.title">Human Resource Management Application</div>
+          <div class="exp-date" data-i18n="exp.dsi.date">Jun – Aug 2023</div>
+        </div>
+        <div class="exp-company" data-i18n="exp.dsi.company">DSI · Tunisia</div>
+        <ul class="bullets" data-i18n-list="exp.dsi.bullets">
+          <li>Built HR platform managing <em>200+</em> employee profiles</li>
+          <li>Added attendance, contracts, and leave tracking — reduced admin load by <em>25%</em></li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Spring Boot</span><span class="exp-tag">Angular</span><span class="exp-tag">PostgreSQL</span>
+        </div>
+      </div>
+
+      <!-- IPT -->
+      <div class="exp-card">
+        <div class="exp-head">
+          <div class="exp-title" data-i18n="exp.ipt.title">Medical Data — Mobile &amp; Web App (PFE)</div>
+          <div class="exp-date" data-i18n="exp.ipt.date">Feb – May 2022</div>
+        </div>
+        <div class="exp-company" data-i18n="exp.ipt.company">Institut Pasteur de Tunis · Tunisia</div>
+        <ul class="bullets" data-i18n-list="exp.ipt.bullets">
+          <li>Collected and structured medical data from <em>100+</em> patients infected with Cutaneous Leishmaniasis</li>
+          <li>Trained an ML model for disease prediction reaching <em>90%</em> initial accuracy</li>
+          <li>Built <em>Flutter mobile app</em> for field data collection and a <em>Spring Boot + Angular</em> web dashboard with interactive filters and custom visualizations used by <em>10+</em> researchers</li>
+          <li><em>Flask</em> served the ML model as a REST API consumed by both apps</li>
+        </ul>
+        <div class="yt-wrap">
+          <iframe src="https://www.youtube.com/embed/mz2OGobR_AA" title="Leishmaniasis App Demo" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="yt-label" data-i18n="exp.ipt.ytlabel">Medical Data Mobile App — Demo</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Flutter</span><span class="exp-tag">Spring Boot</span>
+          <span class="exp-tag">Angular</span><span class="exp-tag">Flask</span>
+          <span class="exp-tag">Machine Learning</span>
+        </div>
+      </div>
+
+      <!-- MAZE -->
+      <div class="exp-card">
+        <div class="exp-head">
+          <div class="exp-title" data-i18n="exp.maze.title">iSporit Gym — Mobile App</div>
+          <div class="exp-date" data-i18n="exp.maze.date">Jun – Aug 2021</div>
+        </div>
+        <div class="exp-company" data-i18n="exp.maze.company">Startup TheMazeGroup · Tunisia</div>
+        <ul class="bullets" data-i18n-list="exp.maze.bullets">
+          <li>Gym management system for memberships, subscriptions, and attendance tracking</li>
+          <li>Automated registration and payments — cut manual work for staff by <em>50%</em></li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Flutter</span><span class="exp-tag">Node.js</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="sec-head"><span class="sec-kw">03.</span><span class="sec-title" data-i18n="sec.projects">Projects</span><div class="sec-line"></div></div>
+
+    <!-- SMART EXPENSE TRACKER — featured personal project -->
+    <article class="feat-card" id="smart-expense-tracker">
+      <div class="feat-top">
+        <img class="feat-logo" src="assets/smart-expense-tracker/logo.png" alt="Smart Expense Tracker logo" width="56" height="56"/>
+        <div>
+          <div class="feat-badges"><span class="feat-badge" data-i18n="proj.set.badge">Personal project</span><span class="feat-ver">v1.11.0</span><span class="feat-plat">Android · iPhone · Web</span></div>
+          <h3 class="feat-name">Smart Expense Tracker</h3>
+          <p class="feat-tagline" data-i18n="proj.set.tagline">Snap a receipt, the app does the rest.</p>
+        </div>
+      </div>
+      <p class="feat-desc" data-i18n="proj.set.desc">Take a photo of a receipt and the app reads it for you (store, date, items and total), files it under the right category and turns it into spending dashboards. I designed, built and run it end to end on my own: a Flutter app, a serverless Azure backend, Terraform infrastructure and automated releases, all for about $0 a month.</p>
+      <div class="feat-links">
+        <a class="btn-primary" href="https://stwebexpensedevtkma5.z28.web.core.windows.net/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span data-i18n="proj.set.try">Try the live demo</span>
+        </a>
+        <a class="btn-ghost" href="https://github.com/Mohamedferjani/med-ferjani-portfolio/releases/latest/download/smart-expense-tracker.apk">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22a11.4 11.4 0 0 0-9.84 0L5.22 5.92a.38.38 0 0 0-.66.38L6.4 9.48A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg><span data-i18n="proj.set.apk">Android APK</span>
+        </a>
+        <a class="btn-ghost" href="https://github.com/Mohamedferjani/med-ferjani-portfolio/releases/latest/download/smart-expense-tracker.ipa">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.1 5.86c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.58.67-1.1 1.76-.96 2.8 1.01.08 2.05-.52 2.68-1.28z"/></svg><span data-i18n="proj.set.ipa">iPhone IPA</span>
+        </a>
+        <a class="btn-ghost" href="https://smart-expense-tracker-f690f.web.app" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span data-i18n="proj.set.site">Project site</span>
+        </a>
+      </div>
+      <p class="feat-note" data-i18n="proj.set.note">In the demo, tap “Try the demo account”: no sign-up needed. The IPA is unsigned; install it with Sideloadly and a free Apple ID.</p>
+      <div class="shots">
+        <figure class="shot" onclick="openLightbox(0,'set')"><div class="shot-frame"><img src="assets/smart-expense-tracker/scan-demo.gif" alt="Scanning a receipt" loading="lazy"/></div><figcaption data-i18n="proj.set.cap1">Scanning</figcaption></figure>
+        <figure class="shot" onclick="openLightbox(1,'set')"><div class="shot-frame"><img src="assets/smart-expense-tracker/overview.jpg" alt="Overview dashboard" loading="lazy"/></div><figcaption data-i18n="proj.set.cap2">Overview</figcaption></figure>
+        <figure class="shot" onclick="openLightbox(2,'set')"><div class="shot-frame"><img src="assets/smart-expense-tracker/budgets.jpg" alt="Monthly budgets" loading="lazy"/></div><figcaption data-i18n="proj.set.cap3">Budgets</figcaption></figure>
+        <figure class="shot" onclick="openLightbox(3,'set')"><div class="shot-frame"><img src="assets/smart-expense-tracker/receipts.jpg" alt="Receipts list" loading="lazy"/></div><figcaption data-i18n="proj.set.cap4">Receipts</figcaption></figure>
+        <figure class="shot" onclick="openLightbox(4,'set')"><div class="shot-frame"><img src="assets/smart-expense-tracker/detail.jpg" alt="Receipt read automatically" loading="lazy"/></div><figcaption data-i18n="proj.set.cap5">Receipt detail</figcaption></figure>
+      </div>
+      <div class="feat-cols">
+        <div>
+          <div class="feat-col-title" data-i18n="proj.set.col1">Architecture &amp; DevOps</div>
+          <ul class="proj-detail-bullets" data-i18n-list="proj.set.devops">
+            <li><em>Event-driven, serverless pipeline</em>: the photo goes straight to Blob Storage, then Event Grid and a queue-triggered Azure Function send it to <em>AI Document Intelligence</em>. The expense is ready in about 15 seconds, with retries and a poison queue</li>
+            <li><em>No keys anywhere</em>: managed identity with least-privilege RBAC, user-delegation SAS uploads, secrets in Key Vault, and GitHub Actions signs in to Azure through <em>OIDC</em></li>
+            <li>Every Azure resource in <em>Terraform</em> (remote state, RBAC, budget alerts), plus an Application Insights workbook and error alerts for monitoring</li>
+            <li><em>CI/CD with GitHub Actions</em>: tests, analysis and Terraform checks on every push, automatic deploys from main, and each version tag builds a signed Android APK and an iPhone IPA on a macOS runner</li>
+            <li><em>540+ automated tests</em> (347 backend, 194 Flutter)</li>
+            <li>Runs for about <em>$0 a month</em> on free tiers, with a daily log cap and budget alerts</li>
+          </ul>
+        </div>
+        <div>
+          <div class="feat-col-title" data-i18n="proj.set.col2">The app</div>
+          <ul class="proj-detail-bullets" data-i18n-list="proj.set.app">
+            <li><em>AI receipt scanning</em>: store, date, time, items and total, with categories that learn from your corrections</li>
+            <li>Dashboards, monthly <em>budgets with 80% / 100% alerts</em>, insights and a month-end forecast</li>
+            <li><em>Shared household budgets</em> for up to 6 people, joined with an invite code</li>
+            <li><em>Recurring expenses and bill reminders</em> that keep asking whether a bill was paid until it is</li>
+            <li><em>Works offline</em> with an upload queue, plus CSV export, a home-screen widget, push notifications and Crashlytics</li>
+            <li>Google sign-in, email verification, <em>English, French and Arabic</em> (right to left), light and dark themes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="proj-tags">
+        <span class="proj-tag">Flutter</span><span class="proj-tag">Dart</span><span class="proj-tag">Python</span>
+        <span class="proj-tag">Azure Functions</span><span class="proj-tag">AI Document Intelligence</span>
+        <span class="proj-tag">Cosmos DB</span><span class="proj-tag">Event Grid</span><span class="proj-tag">Key Vault</span>
+        <span class="proj-tag">Terraform</span><span class="proj-tag">GitHub Actions</span><span class="proj-tag">OIDC</span>
+        <span class="proj-tag">Firebase</span>
+      </div>
+    </article>
+
+    <div class="proj-grid">
+
+      <!-- OPENSTACK -->
+      <div class="proj-card" onclick="toggleProj(this)">
+        <div class="proj-icon">☁️</div>
+        <div class="proj-header">
+          <div class="proj-name" data-i18n="proj.openstack.name">OpenStack IaaS Cloud</div>
+          <div class="proj-toggle"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></div>
+        </div>
+        <div class="proj-desc"><span data-i18n="proj.openstack.desc">Private cloud infrastructure built on OpenStack — IaaS with Kubernetes orchestration, automated deployments, and real-time observability.</span></div>
+        <div class="proj-tags">
+          <span class="proj-tag">OpenStack</span><span class="proj-tag">Kubernetes</span>
+          <span class="proj-tag">Ansible</span><span class="proj-tag">Heat</span>
+          <span class="proj-tag">Grafana</span><span class="proj-tag">Prometheus</span>
+        </div>
+        <div class="proj-details">
+          <div class="proj-details-inner">
+            <ul class="proj-detail-bullets" data-i18n-list="proj.openstack.bullets">
+              <li>Set up a Private Cloud on OpenStack with <em>1 controller, 2 storage nodes, and 4 compute nodes</em> — improving resource availability by <em>30%</em></li>
+              <li>Optimized deployments using <em>Heat and Ansible</em>, reducing manual configuration time by <em>60%</em></li>
+              <li>Launched <em>Kubernetes clusters via Magnum</em> to support scalable containerized workloads, increasing deployment reliability by <em>40%</em></li>
+              <li>Applied monitoring with <em>Grafana and Prometheus</em>, enabling real-time insights and reducing incident detection time by <em>50%</em></li>
+              <li>Created the application using <em>Angular and Spring Boot</em>, improving feature delivery speed by <em>25%</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="proj-hint" data-i18n="proj.hint">Click to expand details</div>
+      </div>
+
+      <!-- CI/CD -->
+      <div class="proj-card" onclick="toggleProj(this)">
+        <div class="proj-icon">🔄</div>
+        <div class="proj-header">
+          <div class="proj-name" data-i18n="proj.cicd.name">Automated CI/CD Pipeline</div>
+          <div class="proj-toggle"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg></div>
+        </div>
+        <div class="proj-desc"><span data-i18n="proj.cicd.desc">Full end-to-end DevOps pipeline from source control to production — quality gates, artifact management, containerization, and orchestration.</span></div>
+        <div class="proj-tags">
+          <span class="proj-tag">Jenkins</span><span class="proj-tag">Docker</span>
+          <span class="proj-tag">SonarQube</span><span class="proj-tag">Nexus</span>
+          <span class="proj-tag">GitHub</span><span class="proj-tag">Docker Compose</span>
+        </div>
+        <div class="proj-details">
+          <div class="proj-details-inner">
+            <ul class="proj-detail-bullets" data-i18n-list="proj.cicd.bullets">
+              <li>Retrieved and maintained source code using <em>GitHub</em>, improving code quality by <em>30%</em> through SonarQube analysis</li>
+              <li>Published versioned artifacts to <em>Nexus</em>, increasing artifact traceability and retrieval speed by <em>40%</em></li>
+              <li>Generated and pushed <em>Docker images</em> to Docker Hub, improving deployment portability by <em>50%</em></li>
+              <li>Orchestrated the full application stack with <em>Docker Compose</em>, reducing setup and deployment time by <em>60%</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="proj-hint" data-i18n="proj.hint">Click to expand details</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <div class="sec-head"><span class="sec-kw">04.</span><span class="sec-title" data-i18n="sec.education">Education</span><div class="sec-line"></div></div>
+    <div class="edu-list">
+      <div class="edu-card">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-body">
+          <div class="edu-deg" data-i18n="edu.eng.deg">Engineering — Architecture IT &amp; Cloud Computing</div>
+          <div class="edu-school" data-i18n="edu.eng.school">Private Higher School of Engineering and Technology</div>
+        </div>
+        <div class="edu-year">2022 – 2025</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">💻</div>
+        <div class="edu-body">
+          <div class="edu-deg" data-i18n="edu.bsc.deg">Bachelor's Degree in Computer Science</div>
+          <div class="edu-school" data-i18n="edu.bsc.school">ISTIC, Borj Cedria</div>
+        </div>
+        <div class="edu-year">2019 – 2022</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">📚</div>
+        <div class="edu-body">
+          <div class="edu-deg" data-i18n="edu.bac.deg">Baccalaureate — Experimental Sciences</div>
+          <div class="edu-school" data-i18n="edu.bac.school">High School Ibn Khaldoun Rades</div>
+        </div>
+        <div class="edu-year" data-i18n="edu.bac.year">June 2019</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section class="section" id="languages">
+    <div class="sec-head"><span class="sec-kw">05.</span><span class="sec-title" data-i18n="sec.languages">Languages</span><div class="sec-line"></div></div>
+    <div class="lang-row">
+      <div class="lang-card"><div class="lang-flag">🇹🇳</div><div class="lang-name" data-i18n="lng.arabic">Arabic</div><div class="bar-wrap"><div class="bar" data-w="100%"></div></div><div class="lang-level" data-i18n="lng.arabic.level">Native</div></div>
+      <div class="lang-card"><div class="lang-flag">🇬🇧</div><div class="lang-name" data-i18n="lng.english">English</div><div class="bar-wrap"><div class="bar" data-w="85%"></div></div><div class="lang-level" data-i18n="lng.english.level">Professional</div></div>
+      <div class="lang-card"><div class="lang-flag">🇫🇷</div><div class="lang-name" data-i18n="lng.french">French</div><div class="bar-wrap"><div class="bar" data-w="60%"></div></div><div class="lang-level" data-i18n="lng.french.level">Intermediate</div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="sec-head"><span class="sec-kw">06.</span><span class="sec-title" data-i18n="sec.contact">Contact</span><div class="sec-line"></div></div>
+    <div class="contact-avail">
+      <span class="avail-dot"></span>
+      <span class="avail-text"><strong data-i18n="avail.title">Open to work</strong> — <span data-i18n="avail.body">Available for DevOps, Cloud Engineering, and freelance roles. Based in Tunisia, open to remote worldwide.</span></span>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:mohameed.ferjanii@gmail.com">
+        <div class="cc-icon g">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#39d353" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <div>
+          <div class="cc-label" data-i18n="cc.email.label">Email</div>
+          <div class="cc-val">mohameed.ferjanii@gmail.com</div>
+          <div class="cc-sub" data-i18n="cc.email.sub">Best way to reach me</div>
+        </div>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/med-ferjani-44770320b/" target="_blank" rel="noopener">
+        <div class="cc-icon b">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#58a6ff"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <div>
+          <div class="cc-label" data-i18n="cc.linkedin.label">LinkedIn</div>
+          <div class="cc-val">med-ferjani-44770320b</div>
+          <div class="cc-sub" data-i18n="cc.linkedin.sub">Connect professionally</div>
+        </div>
+      </a>
+      <a class="contact-card" href="https://github.com/Mohamedferjani" target="_blank" rel="noopener">
+        <div class="cc-icon p">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#bc8cff"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </div>
+        <div>
+          <div class="cc-label" data-i18n="cc.github.label">GitHub</div>
+          <div class="cc-val">github.com/Mohamedferjani</div>
+          <div class="cc-sub" data-i18n="cc.github.sub">Browse my repos</div>
+        </div>
+      </a>
+      <span class="contact-card">
+        <div class="cc-icon o">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f78166" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="cc-label" data-i18n="cc.phone.label">Phone</div>
+          <div class="cc-val">+216 23 909 866</div>
+          <div class="cc-sub" data-i18n="cc.phone.sub">Radès, Tunisia</div>
+        </div>
+      </span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-prompt">
+    <span class="g">$</span> echo "<span data-i18n="footer.text">Mohamed Ferjani © 2026 · Cloud &amp; DevOps Engineer · Rades, Tunisia</span>"
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+  <span class="lb-close" onclick="closeLightbox()">✕</span>
+  <span class="lb-nav lb-prev" onclick="lbNav(-1)">‹</span>
+  <img class="lb-img" id="lbImg" src="" alt=""/>
+  <span class="lb-nav lb-next" onclick="lbNav(1)">›</span>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
+<script>
+/* cursor glow */
+const glow=document.getElementById('glow');
+if(glow)document.addEventListener('mousemove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
+
+/* hamburger menu */
+const ham=document.getElementById('hamburger');
+const mob=document.getElementById('mobileMenu');
+ham.addEventListener('click',()=>{
+  ham.classList.toggle('open');
+  mob.classList.toggle('open');
+  document.body.style.overflow=mob.classList.contains('open')?'hidden':'';
+});
+document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{
+  ham.classList.remove('open');mob.classList.remove('open');document.body.style.overflow='';
+}));
+
+/* intersection observer — staggered */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('vis'),i*60);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.05,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.chip,.exp-card,.feat-card,.proj-card,.edu-card,.contact-card').forEach(el=>io.observe(el));
+/* Ensure above-fold elements are shown immediately */
+setTimeout(()=>{
+  document.querySelectorAll('.chip,.exp-card,.feat-card,.proj-card,.edu-card,.contact-card').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top<window.innerHeight&&r.bottom>0)el.classList.add('vis');
+  });
+},100);
+
+/* language bars */
+const barIO=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.bar').forEach(b=>b.style.width=b.dataset.w);barIO.unobserve(e.target);}});
+},{threshold:0.3});
+document.querySelectorAll('.lang-row').forEach(el=>barIO.observe(el));
+
+/* counters */
+const cIO=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('[data-target]').forEach(el=>{
+        const t=+el.dataset.target,sfx=el.dataset.sfx||'';
+        let c=0;const step=t/45;
+        const tm=setInterval(()=>{c=Math.min(c+step,t);el.textContent=Math.round(c)+sfx;if(c>=t)clearInterval(tm);},25);
+      });
+      cIO.unobserve(e.target);
+    }
+  });
+},{threshold:0.5});
+const sb=document.querySelector('.statbar');if(sb)cIO.observe(sb);
+
+/* lightbox */
+const galleries={pfe:[
+  "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879321259-c30ead8b-6acc-4d36-bcf9-fbd849370737_yjt3rs.png",
+  "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879320462-07256102-2945-4d48-9209-05cb6c10b42d_i7lvub.png",
+  "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879321793-1bcfe280-41da-43ab-98e6-5c61d18021fb_x4f7jz.png",
+  "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776387/1774879322036-4b3e2d8c-dd88-48d9-9c45-5c33c94fb7ff_gdybqs.png",
+  "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776387/1774879322244-a3744f0e-19c4-4892-ae42-1aa27e6ba86f_zu7p5n.png"
+],set:[
+  "assets/smart-expense-tracker/scan-demo.gif",
+  "assets/smart-expense-tracker/overview.jpg",
+  "assets/smart-expense-tracker/budgets.jpg",
+  "assets/smart-expense-tracker/receipts.jpg",
+  "assets/smart-expense-tracker/detail.jpg"
+]};
+let lbImgs=galleries.pfe,lbIdx=0;
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lbImg');
+const lbCounter=document.getElementById('lbCounter');
+function openLightbox(i,g){lbImgs=galleries[g||'pfe'];lbIdx=i;lbImg.src=lbImgs[i];lbCounter.textContent=(i+1)+' / '+lbImgs.length;lb.classList.add('open');document.body.style.overflow='hidden';}
+function closeLightbox(){lb.classList.remove('open');document.body.style.overflow='';}
+function closeLightboxOnBg(e){if(e.target===lb)closeLightbox();}
+function lbNav(dir){lbIdx=(lbIdx+dir+lbImgs.length)%lbImgs.length;lbImg.src=lbImgs[lbIdx];lbCounter.textContent=(lbIdx+1)+' / '+lbImgs.length;}
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='ArrowRight')lbNav(1);if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='Escape')closeLightbox();});
+
+
+/* ── LANGUAGE SWITCHER ── */
+const translations = {
+  en: {
+    /* nav */
+    'nav.skills': 'Skills', 'nav.experience': 'Experience', 'nav.projects': 'Projects',
+    'nav.education': 'Education', 'nav.contact': 'Contact',
+    /* hero */
+    'hero.badge': 'Available for opportunities',
+    'hero.role': 'Cloud &amp; DevOps Engineer',
+    'hero.summary': 'Cloud Engineering graduate with hands-on experience in infrastructure automation, CI/CD pipelines, and full-stack deployment. Proven across IaaS, Kubernetes, serverless Azure, microservices and mobile — from private cloud setups to Google Play production.',
+    'hero.cta1': 'Get in Touch', 'hero.cta2': 'View My Work',
+    /* pills */
+    'pill.email': 'Email', 'pill.linkedin': 'LinkedIn', 'pill.location': 'Location',
+    /* stats */
+    'stat.projects': 'Projects Shipped', 'stat.process': 'Process Time Cut',
+    'stat.ml': 'ML Accuracy', 'stat.tech': 'Technologies',
+    /* section headings */
+    'sec.skills': 'Skills', 'sec.experience': 'Experience', 'sec.projects': 'Projects',
+    'sec.education': 'Education', 'sec.languages': 'Languages', 'sec.contact': 'Contact',
+    /* skills */
+    'skill.infra': 'Infrastructure &amp; Orchestration', 'skill.cloud': 'Cloud &amp; Messaging',
+    'skill.cicd': 'CI/CD &amp; DevOps', 'skill.obs': 'Observability', 'skill.dev': 'Development',
+    /* experience — eIOU */
+    'exp.eiou.title': 'eIOU Wallet — Flutter Mobile App (Freelance)',
+    'exp.eiou.date': 'Dec 2025 – Jun 2026',
+    'exp.eiou.company': 'eIOU Organization · Remote (US Client)',
+    'exp.eiou.ytlabel': 'eIOU Wallet — App Demo',
+    'exp.eiou.bullets': [
+      'Built a <em>privacy-focused mobile wallet</em> for the eIOU protocol from scratch using Flutter 3.35 / Dart 3.9, shipped to <em>Google Play Store</em>',
+      'Implemented <em>QR code payments, NFC tap-to-pay</em>, contact management, transaction history with CSV export, and earnings analytics dashboard',
+      'Integrated <em>Tor (.onion) network support</em> via SOCKS5 proxy — privacy-first architecture for censored-network users',
+      'Architected clean 3-layer structure (Presentation / Domain / Data) with Provider state management and go_router navigation',
+      'Built full <em>CI/CD pipeline</em> with GitHub Actions: lint, tests, release AAB builds, auto-deploy to <em>Google Play internal track</em>',
+      'Delivered <em>4 animated themes</em>, in-app shake-to-report bug system, secure local storage, and shipped <em>v1.3.1</em>'
+    ],
+    /* experience — B2M */
+    'exp.b2m.title': 'AI-Driven Microservices Web Platform (PFE)',
+    'exp.b2m.date': 'Feb 2025 – Sept 2025',
+    'exp.b2m.company': 'B2M-IT · Tunisia',
+    'exp.b2m.ytlabel': 'AI-Driven Internship Platform — Full Demo',
+    'exp.b2m.gallery': 'Project Screenshots — GitOps · Grafana · Infrastructure',
+    'exp.b2m.bullets': [
+      'Designed and implemented platform automating the internship lifecycle, reducing manual process time by <em>70%</em>',
+      'Integrated intelligent CV parsing &amp; scoring module achieving <em>90%+</em> accuracy in skills extraction',
+      'Built backend with <em>Spring Microservices</em>, <em>Kafka</em> for async messaging, and <em>Flask</em> for the AI/ML service layer',
+      'Deployed on AKS with GitOps + ArgoCD and secured CI/CD pipeline, cutting deployment time by <em>40%</em>'
+    ],
+    /* experience — SmartGalaxy */
+    'exp.sg.title': 'Mobile App — Experts &amp; Influencers',
+    'exp.sg.date': 'Jun – Aug 2024',
+    'exp.sg.company': 'Startup SmartGalaxy · Tunisia',
+    'exp.sg.bullets': [
+      'Released app connecting <em>50+</em> users with experts and influencers',
+      'Delivered secure messaging, scheduling, and service booking — improving user engagement by <em>30%</em>',
+      'Built backend with <em>Node.js, Express &amp; MongoDB</em> — RESTful APIs, authentication, and real-time messaging'
+    ],
+    /* experience — DSI */
+    'exp.dsi.title': 'Human Resource Management Application',
+    'exp.dsi.date': 'Jun – Aug 2023',
+    'exp.dsi.company': 'DSI · Tunisia',
+    'exp.dsi.bullets': [
+      'Built HR platform managing <em>200+</em> employee profiles',
+      'Added attendance, contracts, and leave tracking — reduced admin load by <em>25%</em>'
+    ],
+    /* experience — IPT */
+    'exp.ipt.title': 'Medical Data — Mobile &amp; Web App (PFE)',
+    'exp.ipt.date': 'Feb – May 2022',
+    'exp.ipt.company': 'Institut Pasteur de Tunis · Tunisia',
+    'exp.ipt.ytlabel': 'Medical Data Mobile App — Demo',
+    'exp.ipt.bullets': [
+      'Collected and structured medical data from <em>100+</em> patients infected with Cutaneous Leishmaniasis',
+      'Trained an ML model for disease prediction reaching <em>90%</em> initial accuracy',
+      'Built <em>Flutter mobile app</em> for field data collection and a <em>Spring Boot + Angular</em> web dashboard with interactive filters and custom visualizations used by <em>10+</em> researchers',
+      '<em>Flask</em> served the ML model as a REST API consumed by both apps'
+    ],
+    /* experience — Maze */
+    'exp.maze.title': 'iSporit Gym — Mobile App',
+    'exp.maze.date': 'Jun – Aug 2021',
+    'exp.maze.company': 'Startup TheMazeGroup · Tunisia',
+    'exp.maze.bullets': [
+      'Gym management system for memberships, subscriptions, and attendance tracking',
+      'Automated registration and payments — cut manual work for staff by <em>50%</em>'
+    ],
+    /* projects */
+    'proj.openstack.name': 'OpenStack IaaS Cloud',
+    'proj.openstack.desc': 'Private cloud infrastructure built on OpenStack — IaaS with Kubernetes orchestration, automated deployments, and real-time observability.',
+    'proj.openstack.bullets': [
+      'Set up a Private Cloud on OpenStack with <em>1 controller, 2 storage nodes, and 4 compute nodes</em> — improving resource availability by <em>30%</em>',
+      'Optimized deployments using <em>Heat and Ansible</em>, reducing manual configuration time by <em>60%</em>',
+      'Launched <em>Kubernetes clusters via Magnum</em> to support scalable containerized workloads, increasing deployment reliability by <em>40%</em>',
+      'Applied monitoring with <em>Grafana and Prometheus</em>, enabling real-time insights and reducing incident detection time by <em>50%</em>',
+      'Created the application using <em>Angular and Spring Boot</em>, improving feature delivery speed by <em>25%</em>'
+    ],
+    'proj.cicd.name': 'Automated CI/CD Pipeline',
+    'proj.cicd.desc': 'Full end-to-end DevOps pipeline from source control to production — quality gates, artifact management, containerization, and orchestration.',
+    'proj.cicd.bullets': [
+      'Retrieved and maintained source code using <em>GitHub</em>, improving code quality by <em>30%</em> through SonarQube analysis',
+      'Published versioned artifacts to <em>Nexus</em>, increasing artifact traceability and retrieval speed by <em>40%</em>',
+      'Generated and pushed <em>Docker images</em> to Docker Hub, improving deployment portability by <em>50%</em>',
+      'Orchestrated the full application stack with <em>Docker Compose</em>, reducing setup and deployment time by <em>60%</em>'
+    ],
+    'proj.hint': 'Click to expand details',
+    /* projects — Smart Expense Tracker */
+    'proj.set.badge': 'Personal project',
+    'proj.set.tagline': 'Snap a receipt, the app does the rest.',
+    'proj.set.desc': 'Take a photo of a receipt and the app reads it for you (store, date, items and total), files it under the right category and turns it into spending dashboards. I designed, built and run it end to end on my own: a Flutter app, a serverless Azure backend, Terraform infrastructure and automated releases, all for about $0 a month.',
+    'proj.set.try': 'Try the live demo', 'proj.set.apk': 'Android APK', 'proj.set.ipa': 'iPhone IPA', 'proj.set.site': 'Project site',
+    'proj.set.note': 'In the demo, tap “Try the demo account”: no sign-up needed. The IPA is unsigned; install it with Sideloadly and a free Apple ID.',
+    'proj.set.cap1': 'Scanning', 'proj.set.cap2': 'Overview', 'proj.set.cap3': 'Budgets', 'proj.set.cap4': 'Receipts', 'proj.set.cap5': 'Receipt detail',
+    'proj.set.col1': 'Architecture &amp; DevOps', 'proj.set.col2': 'The app',
+    'proj.set.devops': [
+      '<em>Event-driven, serverless pipeline</em>: the photo goes straight to Blob Storage, then Event Grid and a queue-triggered Azure Function send it to <em>AI Document Intelligence</em>. The expense is ready in about 15 seconds, with retries and a poison queue',
+      '<em>No keys anywhere</em>: managed identity with least-privilege RBAC, user-delegation SAS uploads, secrets in Key Vault, and GitHub Actions signs in to Azure through <em>OIDC</em>',
+      'Every Azure resource in <em>Terraform</em> (remote state, RBAC, budget alerts), plus an Application Insights workbook and error alerts for monitoring',
+      '<em>CI/CD with GitHub Actions</em>: tests, analysis and Terraform checks on every push, automatic deploys from main, and each version tag builds a signed Android APK and an iPhone IPA on a macOS runner',
+      '<em>540+ automated tests</em> (347 backend, 194 Flutter)',
+      'Runs for about <em>$0 a month</em> on free tiers, with a daily log cap and budget alerts'
+    ],
+    'proj.set.app': [
+      '<em>AI receipt scanning</em>: store, date, time, items and total, with categories that learn from your corrections',
+      'Dashboards, monthly <em>budgets with 80% / 100% alerts</em>, insights and a month-end forecast',
+      '<em>Shared household budgets</em> for up to 6 people, joined with an invite code',
+      '<em>Recurring expenses and bill reminders</em> that keep asking whether a bill was paid until it is',
+      '<em>Works offline</em> with an upload queue, plus CSV export, a home-screen widget, push notifications and Crashlytics',
+      'Google sign-in, email verification, <em>English, French and Arabic</em> (right to left), light and dark themes'
+    ],
+    /* education */
+    'edu.eng.deg': 'Engineering — Architecture IT &amp; Cloud Computing',
+    'edu.eng.school': 'Private Higher School of Engineering and Technology',
+    'edu.bsc.deg': "Bachelor's Degree in Computer Science",
+    'edu.bsc.school': 'ISTIC, Borj Cedria',
+    'edu.bac.deg': 'Baccalaureate — Experimental Sciences',
+    'edu.bac.school': 'High School Ibn Khaldoun Rades',
+    'edu.bac.year': 'June 2019',
+    /* language levels */
+    'lng.arabic': 'Arabic', 'lng.arabic.level': 'Native',
+    'lng.french': 'French', 'lng.french.level': 'Intermediate',
+    'lng.english': 'English', 'lng.english.level': 'Professional',
+    /* contact */
+    'cc.email.label': 'Email', 'cc.email.sub': 'Best way to reach me',
+    'cc.linkedin.label': 'LinkedIn', 'cc.linkedin.sub': 'Connect professionally',
+    'cc.github.label': 'GitHub', 'cc.github.sub': 'Browse my repos',
+    'cc.phone.label': 'Phone', 'cc.phone.sub': 'Radès, Tunisia',
+    /* availability + footer */
+    'avail.title': 'Open to work',
+    'avail.body': 'Available for DevOps, Cloud Engineering, and freelance roles. Based in Tunisia, open to remote worldwide.',
+    'footer.text': 'Mohamed Ferjani \u00a9 2026 \u00b7 Cloud &amp; DevOps Engineer \u00b7 Rad\u00e8s, Tunisia',
+    'scroll': 'scroll',
+  },
+  fr: {
+    /* nav */
+    'nav.skills': 'Compétences', 'nav.experience': 'Expérience', 'nav.projects': 'Projets',
+    'nav.education': 'Formation', 'nav.contact': 'Contact',
+    /* hero */
+    'hero.badge': 'Disponible pour des opportunités',
+    'hero.role': 'Ingénieur Cloud &amp; DevOps',
+    'hero.summary': 'Diplômé en ingénierie Cloud avec une expérience pratique en automatisation d\u2019infrastructure, pipelines CI/CD et déploiement full-stack. Expérimenté en IaaS, Kubernetes, Azure serverless, microservices et mobile — des clouds privés jusqu\u2019à Google Play.',
+    'hero.cta1': 'Me Contacter', 'hero.cta2': 'Voir Mon Travail',
+    /* pills */
+    'pill.email': 'E-mail', 'pill.linkedin': 'LinkedIn', 'pill.location': 'Localisation',
+    /* stats */
+    'stat.projects': 'Projets Livrés', 'stat.process': 'Temps de Traitement',
+    'stat.ml': 'Précision ML', 'stat.tech': 'Technologies',
+    /* section headings */
+    'sec.skills': 'Compétences', 'sec.experience': 'Expérience', 'sec.projects': 'Projets',
+    'sec.education': 'Formation', 'sec.languages': 'Langues', 'sec.contact': 'Contact',
+    /* skills */
+    'skill.infra': 'Infrastructure &amp; Orchestration', 'skill.cloud': 'Cloud &amp; Messagerie',
+    'skill.cicd': 'CI/CD &amp; DevOps', 'skill.obs': 'Observabilité', 'skill.dev': 'Développement',
+    /* experience — eIOU */
+    'exp.eiou.title': 'eIOU Wallet — Application Mobile Flutter (Freelance)',
+    'exp.eiou.date': 'Déc 2025 – Juin 2026',
+    'exp.eiou.company': 'eIOU Organization · Remote (Client US)',
+    'exp.eiou.ytlabel': 'eIOU Wallet — Démo de l\u2019application',
+    'exp.eiou.bullets': [
+      'Développé un <em>portefeuille mobile axé sur la confidentialité</em> pour le protocole eIOU en partant de zéro avec Flutter 3.35 / Dart 3.9, publié sur <em>Google Play Store</em>',
+      'Implémenté les <em>paiements par QR code, NFC tap-to-pay</em>, gestion des contacts, historique des transactions avec export CSV et tableau de bord analytique',
+      'Intégré le <em>réseau Tor (.onion)</em> via proxy SOCKS5 — architecture privacy-first pour les utilisateurs en réseaux censurés',
+      'Architecture propre en 3 couches (Présentation / Domaine / Données) avec gestion d\u2019état Provider et navigation go_router',
+      'Pipeline <em>CI/CD complet</em> avec GitHub Actions : lint, tests, builds AAB de release, déploiement auto sur la <em>piste interne Google Play</em>',
+      'Livré <em>4 thèmes animés</em>, système de rapport de bugs par secousse, stockage local sécurisé, et publication de la <em>v1.3.1</em>'
+    ],
+    /* experience — B2M */
+    'exp.b2m.title': 'Plateforme Web Microservices IA (PFE)',
+    'exp.b2m.date': 'Fév 2025 – Sept 2025',
+    'exp.b2m.company': 'B2M-IT · Tunisie',
+    'exp.b2m.ytlabel': 'Plateforme de Stage IA — Démo Complète',
+    'exp.b2m.gallery': 'Captures du Projet — GitOps · Grafana · Infrastructure',
+    'exp.b2m.bullets': [
+      'Conçu et implémenté une plateforme automatisant le cycle de vie des stages, réduisant le temps de traitement manuel de <em>70%</em>',
+      'Intégré un module intelligent de parsing &amp; scoring de CV atteignant <em>90%+</em> de précision en extraction de compétences',
+      'Backend avec <em>Spring Microservices</em>, <em>Kafka</em> pour la messagerie asynchrone, et <em>Flask</em> pour la couche IA/ML',
+      'Déployé sur AKS avec GitOps + ArgoCD et pipeline CI/CD sécurisé, réduisant le temps de déploiement de <em>40%</em>'
+    ],
+    /* experience — SmartGalaxy */
+    'exp.sg.title': 'Application Mobile — Experts &amp; Influenceurs',
+    'exp.sg.date': 'Juin – Août 2024',
+    'exp.sg.company': 'Startup SmartGalaxy · Tunisie',
+    'exp.sg.bullets': [
+      'Publié une application connectant <em>50+</em> utilisateurs avec des experts et influenceurs',
+      'Messagerie sécurisée, planification et réservation de services — engagement utilisateur amélioré de <em>30%</em>',
+      'Backend avec <em>Node.js, Express &amp; MongoDB</em> — APIs RESTful, authentification et messagerie temps réel'
+    ],
+    /* experience — DSI */
+    'exp.dsi.title': 'Application de Gestion des Ressources Humaines',
+    'exp.dsi.date': 'Juin – Août 2023',
+    'exp.dsi.company': 'DSI · Tunisie',
+    'exp.dsi.bullets': [
+      'Plateforme RH gérant <em>200+</em> profils employés',
+      'Suivi des présences, contrats et congés — charge administrative réduite de <em>25%</em>'
+    ],
+    /* experience — IPT */
+    'exp.ipt.title': 'Données Médicales — Application Mobile &amp; Web (PFE)',
+    'exp.ipt.date': 'Fév – Mai 2022',
+    'exp.ipt.company': 'Institut Pasteur de Tunis · Tunisie',
+    'exp.ipt.ytlabel': 'Application Mobile Données Médicales — Démo',
+    'exp.ipt.bullets': [
+      'Collecte et structuration de données médicales de <em>100+</em> patients atteints de Leishmaniose Cutanée',
+      'Entraîné un modèle ML pour la prédiction de maladies atteignant une précision initiale de <em>90%</em>',
+      'Développé une <em>application mobile Flutter</em> pour la collecte terrain et un tableau de bord web <em>Spring Boot + Angular</em> avec filtres interactifs utilisé par <em>10+</em> chercheurs',
+      '<em>Flask</em> a servi le modèle ML en tant qu\u2019API REST consommée par les deux applications'
+    ],
+    /* experience — Maze */
+    'exp.maze.title': 'iSporit Gym — Application Mobile',
+    'exp.maze.date': 'Juin – Août 2021',
+    'exp.maze.company': 'Startup TheMazeGroup · Tunisie',
+    'exp.maze.bullets': [
+      'Système de gestion de salle de sport pour abonnements, inscriptions et suivi des présences',
+      'Automatisation des inscriptions et paiements — charge manuelle réduite de <em>50%</em>'
+    ],
+    /* projects */
+    'proj.openstack.name': 'Cloud IaaS OpenStack',
+    'proj.openstack.desc': 'Infrastructure cloud privée sur OpenStack — IaaS avec orchestration Kubernetes, déploiements automatisés et observabilité en temps réel.',
+    'proj.openstack.bullets': [
+      'Mise en place d\u2019un Cloud Privé sur OpenStack avec <em>1 contrôleur, 2 nœuds de stockage et 4 nœuds de calcul</em> — disponibilité des ressources améliorée de <em>30%</em>',
+      'Déploiements optimisés avec <em>Heat et Ansible</em>, réduisant le temps de configuration manuelle de <em>60%</em>',
+      'Lancement de <em>clusters Kubernetes via Magnum</em> pour des charges de travail conteneurisées évolutives, fiabilité de déploiement améliorée de <em>40%</em>',
+      'Supervision avec <em>Grafana et Prometheus</em>, insights temps réel et détection d\u2019incidents réduite de <em>50%</em>',
+      'Application créée avec <em>Angular et Spring Boot</em>, vitesse de livraison des fonctionnalités améliorée de <em>25%</em>'
+    ],
+    'proj.cicd.name': 'Pipeline CI/CD Automatisé',
+    'proj.cicd.desc': 'Pipeline DevOps complet du contrôle de source à la production — contrôle qualité, gestion d\u2019artefacts, conteneurisation et orchestration.',
+    'proj.cicd.bullets': [
+      'Récupération et maintenance du code source via <em>GitHub</em>, qualité du code améliorée de <em>30%</em> grâce à l\u2019analyse SonarQube',
+      'Publication d\u2019artefacts versionnés sur <em>Nexus</em>, traçabilité et vitesse de récupération améliorées de <em>40%</em>',
+      'Génération et publication d\u2019<em>images Docker</em> sur Docker Hub, portabilité de déploiement améliorée de <em>50%</em>',
+      'Orchestration de la stack complète avec <em>Docker Compose</em>, temps de configuration et de déploiement réduit de <em>60%</em>'
+    ],
+    'proj.hint': 'Cliquer pour voir les détails',
+    /* projets — Smart Expense Tracker */
+    'proj.set.badge': 'Projet personnel',
+    'proj.set.tagline': 'Prenez un reçu en photo, l’application fait le reste.',
+    'proj.set.desc': 'Prenez un reçu en photo : l’application lit le magasin, la date, les articles et le total, classe la dépense dans la bonne catégorie et l’intègre à des tableaux de bord. Je l’ai conçue, développée et je l’exploite seul, de bout en bout : application Flutter, backend serverless sur Azure, infrastructure Terraform et publications automatisées, pour environ 0 $ par mois.',
+    'proj.set.try': 'Essayer la démo en ligne', 'proj.set.apk': 'APK Android', 'proj.set.ipa': 'IPA iPhone', 'proj.set.site': 'Site du projet',
+    'proj.set.note': 'Dans la démo, appuyez sur « Try the demo account » : aucune inscription n’est nécessaire. L’IPA n’est pas signée ; installez-la avec Sideloadly et un identifiant Apple gratuit.',
+    'proj.set.cap1': 'Scan', 'proj.set.cap2': 'Aperçu', 'proj.set.cap3': 'Budgets', 'proj.set.cap4': 'Reçus', 'proj.set.cap5': 'Détail du reçu',
+    'proj.set.col1': 'Architecture &amp; DevOps', 'proj.set.col2': 'L’application',
+    'proj.set.devops': [
+      '<em>Pipeline serverless événementiel</em> : la photo part directement dans Blob Storage, puis Event Grid et une Azure Function déclenchée par file d’attente l’envoient à <em>AI Document Intelligence</em>. La dépense est prête en 15 secondes environ, avec relances et file d’erreurs',
+      '<em>Aucune clé nulle part</em> : identité managée avec RBAC au moindre privilège, envois par SAS de délégation utilisateur, secrets dans Key Vault, et GitHub Actions se connecte à Azure via <em>OIDC</em>',
+      'Toutes les ressources Azure en <em>Terraform</em> (état distant, RBAC, alertes de budget), avec un classeur Application Insights et des alertes d’erreur pour la supervision',
+      '<em>CI/CD avec GitHub Actions</em> : tests, analyse et vérifications Terraform à chaque push, déploiement automatique depuis main, et chaque tag de version produit un APK Android signé et une IPA iPhone sur un runner macOS',
+      '<em>Plus de 540 tests automatisés</em> (347 backend, 194 Flutter)',
+      'Fonctionne pour environ <em>0 $ par mois</em> grâce aux offres gratuites, avec un plafond de logs quotidien et des alertes de budget'
+    ],
+    'proj.set.app': [
+      '<em>Lecture des reçus par IA</em> : magasin, date, heure, articles et total, avec des catégories qui apprennent de vos corrections',
+      'Tableaux de bord, <em>budgets mensuels avec alertes à 80 % / 100 %</em>, analyses et prévision de fin de mois',
+      '<em>Budgets partagés en foyer</em> jusqu’à 6 personnes, avec un code d’invitation',
+      '<em>Dépenses récurrentes et rappels de factures</em> qui demandent si une facture est payée, jusqu’à ce qu’elle le soit',
+      '<em>Fonctionne hors ligne</em> avec une file d’envoi, plus export CSV, widget d’écran d’accueil, notifications push et Crashlytics',
+      'Connexion Google, vérification de l’e-mail, <em>anglais, français et arabe</em> (de droite à gauche), thèmes clair et sombre'
+    ],
+    /* education */
+    'edu.eng.deg': 'Ingénierie — Architecture IT &amp; Cloud Computing',
+    'edu.eng.school': 'École Supérieure Privée d\u2019Ingénierie et de Technologie',
+    'edu.bsc.deg': 'Licence en Informatique',
+    'edu.bsc.school': 'ISTIC, Borj Cedria',
+    'edu.bac.deg': 'Baccalauréat — Sciences Expérimentales',
+    'edu.bac.school': 'Lycée Ibn Khaldoun Radès',
+    'edu.bac.year': 'Juin 2019',
+    /* language levels */
+    'lng.arabic': 'Arabe', 'lng.arabic.level': 'Langue maternelle',
+    'lng.french': 'Français', 'lng.french.level': 'Intermédiaire',
+    'lng.english': 'Anglais', 'lng.english.level': 'Professionnel',
+    /* contact */
+    'cc.email.label': 'E-mail', 'cc.email.sub': 'Meilleure façon de me joindre',
+    'cc.linkedin.label': 'LinkedIn', 'cc.linkedin.sub': 'Se connecter professionnellement',
+    'cc.github.label': 'GitHub', 'cc.github.sub': 'Voir mes dépôts',
+    'cc.phone.label': 'Téléphone', 'cc.phone.sub': 'Radès, Tunisie',
+    /* availability + footer */
+    'avail.title': 'Disponible',
+    'avail.body': 'Disponible pour des postes DevOps, Cloud Engineering et missions freelance. Basé en Tunisie, ouvert au télétravail mondial.',
+    'footer.text': 'Mohamed Ferjani \u00a9 2026 \u00b7 Ingénieur Cloud &amp; DevOps \u00b7 Rad\u00e8s, Tunisie',
+    'scroll': 'défiler',
+  }
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = translations[lang];
+
+  // Update plain data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Update list elements (data-i18n-list)
+  document.querySelectorAll('[data-i18n-list]').forEach(ul => {
+    const key = ul.getAttribute('data-i18n-list');
+    const items = t[key];
+    if (Array.isArray(items)) {
+      ul.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+    }
+  });
+
+  // Update lang switcher active state
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  // Update html lang attribute and page title
+  document.documentElement.lang = lang;
+  document.title = lang === 'fr'
+    ? 'Mohamed Ferjani \u00b7 Ingénieur Cloud & DevOps'
+    : 'Mohamed Ferjani \u00b7 Cloud & DevOps Engineer';
+
+  // Sync proj-hint text for expanded/collapsed state
+  document.querySelectorAll('.proj-card.expanded .proj-hint').forEach(h => {
+    h.textContent = lang === 'fr' ? 'Cliquer pour réduire' : 'Click to collapse';
+  });
+  document.querySelectorAll('.proj-card:not(.expanded) .proj-hint').forEach(h => {
+    h.textContent = t['proj.hint'];
+  });
+}
+
+/* expandable project cards */
+function toggleProj(card){
+  const isOpen=card.classList.contains('expanded');
+  document.querySelectorAll('.proj-card').forEach(c=>{
+    c.classList.remove('expanded');
+    const hint=c.querySelector('.proj-hint');
+    if(hint)hint.textContent=currentLang==='fr'?'Cliquer pour voir les détails':'Click to expand details';
+  });
+  if(!isOpen){
+    card.classList.add('expanded');
+    const hint=card.querySelector('.proj-hint');
+    if(hint)hint.textContent=currentLang==='fr'?'Cliquer pour réduire':'Click to collapse';
+  }
+}
+</script>
+</body>
+</html>

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mohamed Ferjani · Cloud & DevOps Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="icon" type="image/x-icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
@@ -206,6 +207,40 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(13,17,23,0.9
 .proj-detail-bullets em{color:var(--purple);font-style:normal;font-weight:500}
 .proj-hint{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:.75rem;opacity:.6}
 
+/* ── FEATURED PROJECT ── */
+.feat-card{position:relative;background:linear-gradient(160deg,rgba(57,211,211,.06),transparent 45%),var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.75rem;margin-bottom:1.5rem;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s,border-color .2s}
+@media(max-width:500px){.feat-card{padding:1.25rem}}
+.feat-card.vis{opacity:1;transform:translateY(0)}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--teal),var(--green),transparent)}
+.feat-card:hover{border-color:#1f5c5c}
+.feat-top{display:flex;gap:1rem;align-items:center;margin-bottom:1rem}
+.feat-logo{width:56px;height:56px;border-radius:14px;flex-shrink:0;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.feat-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.35rem}
+.feat-badge,.feat-ver,.feat-plat{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:100px;border:1px solid}
+.feat-badge{color:var(--teal);border-color:rgba(57,211,211,.35);background:rgba(57,211,211,.08)}
+.feat-ver{color:var(--green);border-color:var(--green-dim);background:rgba(26,71,49,.25)}
+.feat-plat{color:var(--muted);border-color:var(--border)}
+.feat-name{font-family:'JetBrains Mono',monospace;font-size:clamp(1.1rem,3vw,1.4rem);font-weight:700;color:var(--text);line-height:1.2}
+.feat-tagline{font-size:13px;color:var(--teal);margin-top:2px}
+.feat-desc{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:1.1rem;max-width:760px}
+.feat-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:.6rem}
+.feat-links a{display:inline-flex;align-items:center;gap:8px}
+.feat-links svg{width:14px;height:14px;flex-shrink:0}
+.feat-note{font-size:11px;color:var(--muted);margin-bottom:1.4rem;opacity:.85}
+.shots{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:1.5rem}
+@media(max-width:700px){.shots{grid-template-columns:repeat(5,minmax(120px,1fr));overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}.shot{scroll-snap-align:start}}
+.shot{margin:0;cursor:pointer}
+.shot-frame{aspect-ratio:9/19;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--bg3);transition:border-color .2s,transform .2s,box-shadow .2s}
+.shot:hover .shot-frame{border-color:var(--teal);transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.45)}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.shot figcaption{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-align:center;margin-top:6px}
+.feat-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.25rem}
+@media(max-width:700px){.feat-cols{grid-template-columns:1fr}}
+.feat-col-title{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem}
+.feat-card .proj-detail-bullets li{font-size:12.5px}
+.feat-card .proj-detail-bullets li::before{color:var(--teal)}
+.feat-card .proj-detail-bullets em{color:var(--teal)}
+
 /* ── EDUCATION ── */
 .edu-list{display:flex;flex-direction:column;gap:1rem}
 .edu-card{display:flex;align-items:flex-start;gap:1.1rem;padding:1.25rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;transition:border-color .2s;opacity:0;transform:translateY(12px)}
@@ -315,7 +350,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
       <span class="nr">Fer</span><span class="nm">jani</span><span class="bracket">}</span>
     </h1>
     <p class="hero-role"><span class="pr">&gt; </span><span data-i18n="hero.role">Cloud &amp; DevOps Engineer</span></p>
-    <p class="hero-summary"><span data-i18n="hero.summary">Cloud Engineering graduate with hands-on experience in infrastructure automation, CI/CD pipelines, and full-stack deployment. Proven across IaaS, Kubernetes, microservices and mobile — from private cloud setups to Google Play production.</span></p>
+    <p class="hero-summary"><span data-i18n="hero.summary">Cloud Engineering graduate with hands-on experience in infrastructure automation, CI/CD pipelines, and full-stack deployment. Proven across IaaS, Kubernetes, serverless Azure, microservices and mobile — from private cloud setups to Google Play production.</span></p>
     <div class="hero-ctas">
       <a class="btn-primary" href="#contact" data-i18n="hero.cta1">Get in Touch</a>
       <a class="btn-ghost" href="#experience" data-i18n="hero.cta2">View My Work</a>
@@ -341,7 +376,7 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
 <!-- STAT BAR -->
 <div class="statbar">
   <div class="statbar-inner">
-    <div class="stat"><div class="stat-num" data-target="6">0</div><div class="stat-label" data-i18n="stat.projects">Projects Shipped</div></div>
+    <div class="stat"><div class="stat-num" data-target="7">0</div><div class="stat-label" data-i18n="stat.projects">Projects Shipped</div></div>
     <div class="stat"><div class="stat-num" data-target="70" data-sfx="%">0%</div><div class="stat-label" data-i18n="stat.process">Process Time Cut</div></div>
     <div class="stat"><div class="stat-num" data-target="90" data-sfx="%">0%</div><div class="stat-label" data-i18n="stat.ml">ML Accuracy</div></div>
     <div class="stat"><div class="stat-num" data-target="20" data-sfx="+">0+</div><div class="stat-label" data-i18n="stat.tech">Technologies</div></div>
@@ -361,12 +396,17 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
           <span class="chip ci"><span class="cd"></span>Docker</span>
           <span class="chip ci"><span class="cd"></span>Ansible</span>
           <span class="chip ci"><span class="cd"></span>OpenStack</span>
+          <span class="chip ci"><span class="cd"></span>Terraform</span>
         </div>
       </div>
       <div>
         <div class="skill-cat-label" data-i18n="skill.cloud">Cloud &amp; Messaging</div>
         <div class="chips">
           <span class="chip ccl"><span class="cd"></span>Azure / AKS</span>
+          <span class="chip ccl"><span class="cd"></span>Azure Functions</span>
+          <span class="chip ccl"><span class="cd"></span>Cosmos DB</span>
+          <span class="chip ccl"><span class="cd"></span>Event Grid</span>
+          <span class="chip ccl"><span class="cd"></span>Firebase</span>
           <span class="chip ccl"><span class="cd"></span>Kafka</span>
           <span class="chip ccl"><span class="cd"></span>Spring Microservices</span>
         </div>
@@ -397,6 +437,8 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
           <span class="chip cd2"><span class="cd"></span>Angular</span>
           <span class="chip cd2"><span class="cd"></span>React</span>
           <span class="chip cd2"><span class="cd"></span>Flutter</span>
+          <span class="chip cd2"><span class="cd"></span>Dart</span>
+          <span class="chip cd2"><span class="cd"></span>Python</span>
           <span class="chip cd2"><span class="cd"></span>Node.js</span>
           <span class="chip cd2"><span class="cd"></span>Flask</span>
           <span class="chip cd2"><span class="cd"></span>Express</span>
@@ -568,6 +610,73 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
   <!-- PROJECTS -->
   <section class="section" id="projects">
     <div class="sec-head"><span class="sec-kw">03.</span><span class="sec-title" data-i18n="sec.projects">Projects</span><div class="sec-line"></div></div>
+
+    <!-- SMART EXPENSE TRACKER — featured personal project -->
+    <article class="feat-card" id="smart-expense-tracker">
+      <div class="feat-top">
+        <img class="feat-logo" src="assets/smart-expense-tracker/logo.png" alt="Smart Expense Tracker logo" width="56" height="56"/>
+        <div>
+          <div class="feat-badges"><span class="feat-badge" data-i18n="proj.set.badge">Personal project</span><span class="feat-ver">v1.11.0</span><span class="feat-plat">Android · iPhone · Web</span></div>
+          <h3 class="feat-name">Smart Expense Tracker</h3>
+          <p class="feat-tagline" data-i18n="proj.set.tagline">Snap a receipt, the app does the rest.</p>
+        </div>
+      </div>
+      <p class="feat-desc" data-i18n="proj.set.desc">Take a photo of a receipt and the app reads it for you (store, date, items and total), files it under the right category and turns it into spending dashboards. I designed, built and run it end to end on my own: a Flutter app, a serverless Azure backend, Terraform infrastructure and automated releases, all for about $0 a month.</p>
+      <div class="feat-links">
+        <a class="btn-primary" href="https://stwebexpensedevtkma5.z28.web.core.windows.net/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span data-i18n="proj.set.try">Try the live demo</span>
+        </a>
+        <a class="btn-ghost" href="https://github.com/Mohamedferjani/med-ferjani-portfolio/releases/latest/download/smart-expense-tracker.apk">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22a11.4 11.4 0 0 0-9.84 0L5.22 5.92a.38.38 0 0 0-.66.38L6.4 9.48A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg><span data-i18n="proj.set.apk">Android APK</span>
+        </a>
+        <a class="btn-ghost" href="https://github.com/Mohamedferjani/med-ferjani-portfolio/releases/latest/download/smart-expense-tracker.ipa">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.1 5.86c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.58.67-1.1 1.76-.96 2.8 1.01.08 2.05-.52 2.68-1.28z"/></svg><span data-i18n="proj.set.ipa">iPhone IPA</span>
+        </a>
+        <a class="btn-ghost" href="https://smart-expense-tracker-f690f.web.app" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span data-i18n="proj.set.site">Project site</span>
+        </a>
+      </div>
+      <p class="feat-note" data-i18n="proj.set.note">In the demo, tap “Try the demo account”: no sign-up needed. The IPA is unsigned; install it with Sideloadly and a free Apple ID.</p>
+      <div class="shots">
+        <figure class="shot" onclick="openLightbox(0,'set')"><div class="shot-frame"><img src="assets/smart-expense-tracker/scan-demo.gif" alt="Scanning a receipt" loading="lazy"/></div><figcaption data-i18n="proj.set.cap1">Scanning</figcaption></figure>
+        <figure class="shot" onclick="openLightbox(1,'set')"><div class="shot-frame"><img src="assets/smart-expense-tracker/overview.jpg" alt="Overview dashboard" loading="lazy"/></div><figcaption data-i18n="proj.set.cap2">Overview</figcaption></figure>
+        <figure class="shot" onclick="openLightbox(2,'set')"><div class="shot-frame"><img src="assets/smart-expense-tracker/budgets.jpg" alt="Monthly budgets" loading="lazy"/></div><figcaption data-i18n="proj.set.cap3">Budgets</figcaption></figure>
+        <figure class="shot" onclick="openLightbox(3,'set')"><div class="shot-frame"><img src="assets/smart-expense-tracker/receipts.jpg" alt="Receipts list" loading="lazy"/></div><figcaption data-i18n="proj.set.cap4">Receipts</figcaption></figure>
+        <figure class="shot" onclick="openLightbox(4,'set')"><div class="shot-frame"><img src="assets/smart-expense-tracker/detail.jpg" alt="Receipt read automatically" loading="lazy"/></div><figcaption data-i18n="proj.set.cap5">Receipt detail</figcaption></figure>
+      </div>
+      <div class="feat-cols">
+        <div>
+          <div class="feat-col-title" data-i18n="proj.set.col1">Architecture &amp; DevOps</div>
+          <ul class="proj-detail-bullets" data-i18n-list="proj.set.devops">
+            <li><em>Event-driven, serverless pipeline</em>: the photo goes straight to Blob Storage, then Event Grid and a queue-triggered Azure Function send it to <em>AI Document Intelligence</em>. The expense is ready in about 15 seconds, with retries and a poison queue</li>
+            <li><em>No keys anywhere</em>: managed identity with least-privilege RBAC, user-delegation SAS uploads, secrets in Key Vault, and GitHub Actions signs in to Azure through <em>OIDC</em></li>
+            <li>Every Azure resource in <em>Terraform</em> (remote state, RBAC, budget alerts), plus an Application Insights workbook and error alerts for monitoring</li>
+            <li><em>CI/CD with GitHub Actions</em>: tests, analysis and Terraform checks on every push, automatic deploys from main, and each version tag builds a signed Android APK and an iPhone IPA on a macOS runner</li>
+            <li><em>540+ automated tests</em> (347 backend, 194 Flutter)</li>
+            <li>Runs for about <em>$0 a month</em> on free tiers, with a daily log cap and budget alerts</li>
+          </ul>
+        </div>
+        <div>
+          <div class="feat-col-title" data-i18n="proj.set.col2">The app</div>
+          <ul class="proj-detail-bullets" data-i18n-list="proj.set.app">
+            <li><em>AI receipt scanning</em>: store, date, time, items and total, with categories that learn from your corrections</li>
+            <li>Dashboards, monthly <em>budgets with 80% / 100% alerts</em>, insights and a month-end forecast</li>
+            <li><em>Shared household budgets</em> for up to 6 people, joined with an invite code</li>
+            <li><em>Recurring expenses and bill reminders</em> that keep asking whether a bill was paid until it is</li>
+            <li><em>Works offline</em> with an upload queue, plus CSV export, a home-screen widget, push notifications and Crashlytics</li>
+            <li>Google sign-in, email verification, <em>English, French and Arabic</em> (right to left), light and dark themes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="proj-tags">
+        <span class="proj-tag">Flutter</span><span class="proj-tag">Dart</span><span class="proj-tag">Python</span>
+        <span class="proj-tag">Azure Functions</span><span class="proj-tag">AI Document Intelligence</span>
+        <span class="proj-tag">Cosmos DB</span><span class="proj-tag">Event Grid</span><span class="proj-tag">Key Vault</span>
+        <span class="proj-tag">Terraform</span><span class="proj-tag">GitHub Actions</span><span class="proj-tag">OIDC</span>
+        <span class="proj-tag">Firebase</span>
+      </div>
+    </article>
+
     <div class="proj-grid">
 
       <!-- OPENSTACK -->
@@ -662,8 +771,8 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
     <div class="sec-head"><span class="sec-kw">05.</span><span class="sec-title" data-i18n="sec.languages">Languages</span><div class="sec-line"></div></div>
     <div class="lang-row">
       <div class="lang-card"><div class="lang-flag">🇹🇳</div><div class="lang-name" data-i18n="lng.arabic">Arabic</div><div class="bar-wrap"><div class="bar" data-w="100%"></div></div><div class="lang-level" data-i18n="lng.arabic.level">Native</div></div>
-      <div class="lang-card"><div class="lang-flag">🇫🇷</div><div class="lang-name" data-i18n="lng.french">French</div><div class="bar-wrap"><div class="bar" data-w="92%"></div></div><div class="lang-level" data-i18n="lng.french.level">Bilingual</div></div>
-      <div class="lang-card"><div class="lang-flag">🇬🇧</div><div class="lang-name" data-i18n="lng.english">English</div><div class="bar-wrap"><div class="bar" data-w="78%"></div></div><div class="lang-level" data-i18n="lng.english.level">Professional</div></div>
+      <div class="lang-card"><div class="lang-flag">🇬🇧</div><div class="lang-name" data-i18n="lng.english">English</div><div class="bar-wrap"><div class="bar" data-w="85%"></div></div><div class="lang-level" data-i18n="lng.english.level">Professional</div></div>
+      <div class="lang-card"><div class="lang-flag">🇫🇷</div><div class="lang-name" data-i18n="lng.french">French</div><div class="bar-wrap"><div class="bar" data-w="60%"></div></div><div class="lang-level" data-i18n="lng.french.level">Intermediate</div></div>
     </div>
   </section>
 
@@ -761,10 +870,10 @@ const io=new IntersectionObserver(entries=>{
     }
   });
 },{threshold:0.05,rootMargin:'0px 0px -20px 0px'});
-document.querySelectorAll('.chip,.exp-card,.proj-card,.edu-card,.contact-card').forEach(el=>io.observe(el));
+document.querySelectorAll('.chip,.exp-card,.feat-card,.proj-card,.edu-card,.contact-card').forEach(el=>io.observe(el));
 /* Ensure above-fold elements are shown immediately */
 setTimeout(()=>{
-  document.querySelectorAll('.chip,.exp-card,.proj-card,.edu-card,.contact-card').forEach(el=>{
+  document.querySelectorAll('.chip,.exp-card,.feat-card,.proj-card,.edu-card,.contact-card').forEach(el=>{
     const r=el.getBoundingClientRect();
     if(r.top<window.innerHeight&&r.bottom>0)el.classList.add('vis');
   });
@@ -792,18 +901,24 @@ const cIO=new IntersectionObserver(entries=>{
 const sb=document.querySelector('.statbar');if(sb)cIO.observe(sb);
 
 /* lightbox */
-const lbImgs=[
+const galleries={pfe:[
   "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879321259-c30ead8b-6acc-4d36-bcf9-fbd849370737_yjt3rs.png",
   "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879320462-07256102-2945-4d48-9209-05cb6c10b42d_i7lvub.png",
   "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776388/1774879321793-1bcfe280-41da-43ab-98e6-5c61d18021fb_x4f7jz.png",
   "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776387/1774879322036-4b3e2d8c-dd88-48d9-9c45-5c33c94fb7ff_gdybqs.png",
   "https://res.cloudinary.com/cvnry3b8/image/upload/v1785776387/1774879322244-a3744f0e-19c4-4892-ae42-1aa27e6ba86f_zu7p5n.png"
-];
-let lbIdx=0;
+],set:[
+  "assets/smart-expense-tracker/scan-demo.gif",
+  "assets/smart-expense-tracker/overview.jpg",
+  "assets/smart-expense-tracker/budgets.jpg",
+  "assets/smart-expense-tracker/receipts.jpg",
+  "assets/smart-expense-tracker/detail.jpg"
+]};
+let lbImgs=galleries.pfe,lbIdx=0;
 const lb=document.getElementById('lightbox');
 const lbImg=document.getElementById('lbImg');
 const lbCounter=document.getElementById('lbCounter');
-function openLightbox(i){lbIdx=i;lbImg.src=lbImgs[i];lbCounter.textContent=(i+1)+' / '+lbImgs.length;lb.classList.add('open');document.body.style.overflow='hidden';}
+function openLightbox(i,g){lbImgs=galleries[g||'pfe'];lbIdx=i;lbImg.src=lbImgs[i];lbCounter.textContent=(i+1)+' / '+lbImgs.length;lb.classList.add('open');document.body.style.overflow='hidden';}
 function closeLightbox(){lb.classList.remove('open');document.body.style.overflow='';}
 function closeLightboxOnBg(e){if(e.target===lb)closeLightbox();}
 function lbNav(dir){lbIdx=(lbIdx+dir+lbImgs.length)%lbImgs.length;lbImg.src=lbImgs[lbIdx];lbCounter.textContent=(lbIdx+1)+' / '+lbImgs.length;}
@@ -819,7 +934,7 @@ const translations = {
     /* hero */
     'hero.badge': 'Available for opportunities',
     'hero.role': 'Cloud &amp; DevOps Engineer',
-    'hero.summary': 'Cloud Engineering graduate with hands-on experience in infrastructure automation, CI/CD pipelines, and full-stack deployment. Proven across IaaS, Kubernetes, microservices and mobile — from private cloud setups to Google Play production.',
+    'hero.summary': 'Cloud Engineering graduate with hands-on experience in infrastructure automation, CI/CD pipelines, and full-stack deployment. Proven across IaaS, Kubernetes, serverless Azure, microservices and mobile — from private cloud setups to Google Play production.',
     'hero.cta1': 'Get in Touch', 'hero.cta2': 'View My Work',
     /* pills */
     'pill.email': 'Email', 'pill.linkedin': 'LinkedIn', 'pill.location': 'Location',
@@ -912,6 +1027,30 @@ const translations = {
       'Orchestrated the full application stack with <em>Docker Compose</em>, reducing setup and deployment time by <em>60%</em>'
     ],
     'proj.hint': 'Click to expand details',
+    /* projects — Smart Expense Tracker */
+    'proj.set.badge': 'Personal project',
+    'proj.set.tagline': 'Snap a receipt, the app does the rest.',
+    'proj.set.desc': 'Take a photo of a receipt and the app reads it for you (store, date, items and total), files it under the right category and turns it into spending dashboards. I designed, built and run it end to end on my own: a Flutter app, a serverless Azure backend, Terraform infrastructure and automated releases, all for about $0 a month.',
+    'proj.set.try': 'Try the live demo', 'proj.set.apk': 'Android APK', 'proj.set.ipa': 'iPhone IPA', 'proj.set.site': 'Project site',
+    'proj.set.note': 'In the demo, tap “Try the demo account”: no sign-up needed. The IPA is unsigned; install it with Sideloadly and a free Apple ID.',
+    'proj.set.cap1': 'Scanning', 'proj.set.cap2': 'Overview', 'proj.set.cap3': 'Budgets', 'proj.set.cap4': 'Receipts', 'proj.set.cap5': 'Receipt detail',
+    'proj.set.col1': 'Architecture &amp; DevOps', 'proj.set.col2': 'The app',
+    'proj.set.devops': [
+      '<em>Event-driven, serverless pipeline</em>: the photo goes straight to Blob Storage, then Event Grid and a queue-triggered Azure Function send it to <em>AI Document Intelligence</em>. The expense is ready in about 15 seconds, with retries and a poison queue',
+      '<em>No keys anywhere</em>: managed identity with least-privilege RBAC, user-delegation SAS uploads, secrets in Key Vault, and GitHub Actions signs in to Azure through <em>OIDC</em>',
+      'Every Azure resource in <em>Terraform</em> (remote state, RBAC, budget alerts), plus an Application Insights workbook and error alerts for monitoring',
+      '<em>CI/CD with GitHub Actions</em>: tests, analysis and Terraform checks on every push, automatic deploys from main, and each version tag builds a signed Android APK and an iPhone IPA on a macOS runner',
+      '<em>540+ automated tests</em> (347 backend, 194 Flutter)',
+      'Runs for about <em>$0 a month</em> on free tiers, with a daily log cap and budget alerts'
+    ],
+    'proj.set.app': [
+      '<em>AI receipt scanning</em>: store, date, time, items and total, with categories that learn from your corrections',
+      'Dashboards, monthly <em>budgets with 80% / 100% alerts</em>, insights and a month-end forecast',
+      '<em>Shared household budgets</em> for up to 6 people, joined with an invite code',
+      '<em>Recurring expenses and bill reminders</em> that keep asking whether a bill was paid until it is',
+      '<em>Works offline</em> with an upload queue, plus CSV export, a home-screen widget, push notifications and Crashlytics',
+      'Google sign-in, email verification, <em>English, French and Arabic</em> (right to left), light and dark themes'
+    ],
     /* education */
     'edu.eng.deg': 'Engineering — Architecture IT &amp; Cloud Computing',
     'edu.eng.school': 'Private Higher School of Engineering and Technology',
@@ -922,7 +1061,7 @@ const translations = {
     'edu.bac.year': 'June 2019',
     /* language levels */
     'lng.arabic': 'Arabic', 'lng.arabic.level': 'Native',
-    'lng.french': 'French', 'lng.french.level': 'Bilingual',
+    'lng.french': 'French', 'lng.french.level': 'Intermediate',
     'lng.english': 'English', 'lng.english.level': 'Professional',
     /* contact */
     'cc.email.label': 'Email', 'cc.email.sub': 'Best way to reach me',
@@ -942,7 +1081,7 @@ const translations = {
     /* hero */
     'hero.badge': 'Disponible pour des opportunités',
     'hero.role': 'Ingénieur Cloud &amp; DevOps',
-    'hero.summary': 'Diplômé en ingénierie Cloud avec une expérience pratique en automatisation d\u2019infrastructure, pipelines CI/CD et déploiement full-stack. Expérimenté en IaaS, Kubernetes, microservices et mobile — des clouds privés jusqu\u2019à Google Play.',
+    'hero.summary': 'Diplômé en ingénierie Cloud avec une expérience pratique en automatisation d\u2019infrastructure, pipelines CI/CD et déploiement full-stack. Expérimenté en IaaS, Kubernetes, Azure serverless, microservices et mobile — des clouds privés jusqu\u2019à Google Play.',
     'hero.cta1': 'Me Contacter', 'hero.cta2': 'Voir Mon Travail',
     /* pills */
     'pill.email': 'E-mail', 'pill.linkedin': 'LinkedIn', 'pill.location': 'Localisation',
@@ -1035,6 +1174,30 @@ const translations = {
       'Orchestration de la stack complète avec <em>Docker Compose</em>, temps de configuration et de déploiement réduit de <em>60%</em>'
     ],
     'proj.hint': 'Cliquer pour voir les détails',
+    /* projets — Smart Expense Tracker */
+    'proj.set.badge': 'Projet personnel',
+    'proj.set.tagline': 'Prenez un reçu en photo, l’application fait le reste.',
+    'proj.set.desc': 'Prenez un reçu en photo : l’application lit le magasin, la date, les articles et le total, classe la dépense dans la bonne catégorie et l’intègre à des tableaux de bord. Je l’ai conçue, développée et je l’exploite seul, de bout en bout : application Flutter, backend serverless sur Azure, infrastructure Terraform et publications automatisées, pour environ 0 $ par mois.',
+    'proj.set.try': 'Essayer la démo en ligne', 'proj.set.apk': 'APK Android', 'proj.set.ipa': 'IPA iPhone', 'proj.set.site': 'Site du projet',
+    'proj.set.note': 'Dans la démo, appuyez sur « Try the demo account » : aucune inscription n’est nécessaire. L’IPA n’est pas signée ; installez-la avec Sideloadly et un identifiant Apple gratuit.',
+    'proj.set.cap1': 'Scan', 'proj.set.cap2': 'Aperçu', 'proj.set.cap3': 'Budgets', 'proj.set.cap4': 'Reçus', 'proj.set.cap5': 'Détail du reçu',
+    'proj.set.col1': 'Architecture &amp; DevOps', 'proj.set.col2': 'L’application',
+    'proj.set.devops': [
+      '<em>Pipeline serverless événementiel</em> : la photo part directement dans Blob Storage, puis Event Grid et une Azure Function déclenchée par file d’attente l’envoient à <em>AI Document Intelligence</em>. La dépense est prête en 15 secondes environ, avec relances et file d’erreurs',
+      '<em>Aucune clé nulle part</em> : identité managée avec RBAC au moindre privilège, envois par SAS de délégation utilisateur, secrets dans Key Vault, et GitHub Actions se connecte à Azure via <em>OIDC</em>',
+      'Toutes les ressources Azure en <em>Terraform</em> (état distant, RBAC, alertes de budget), avec un classeur Application Insights et des alertes d’erreur pour la supervision',
+      '<em>CI/CD avec GitHub Actions</em> : tests, analyse et vérifications Terraform à chaque push, déploiement automatique depuis main, et chaque tag de version produit un APK Android signé et une IPA iPhone sur un runner macOS',
+      '<em>Plus de 540 tests automatisés</em> (347 backend, 194 Flutter)',
+      'Fonctionne pour environ <em>0 $ par mois</em> grâce aux offres gratuites, avec un plafond de logs quotidien et des alertes de budget'
+    ],
+    'proj.set.app': [
+      '<em>Lecture des reçus par IA</em> : magasin, date, heure, articles et total, avec des catégories qui apprennent de vos corrections',
+      'Tableaux de bord, <em>budgets mensuels avec alertes à 80 % / 100 %</em>, analyses et prévision de fin de mois',
+      '<em>Budgets partagés en foyer</em> jusqu’à 6 personnes, avec un code d’invitation',
+      '<em>Dépenses récurrentes et rappels de factures</em> qui demandent si une facture est payée, jusqu’à ce qu’elle le soit',
+      '<em>Fonctionne hors ligne</em> avec une file d’envoi, plus export CSV, widget d’écran d’accueil, notifications push et Crashlytics',
+      'Connexion Google, vérification de l’e-mail, <em>anglais, français et arabe</em> (de droite à gauche), thèmes clair et sombre'
+    ],
     /* education */
     'edu.eng.deg': 'Ingénierie — Architecture IT &amp; Cloud Computing',
     'edu.eng.school': 'École Supérieure Privée d\u2019Ingénierie et de Technologie',
@@ -1045,7 +1208,7 @@ const translations = {
     'edu.bac.year': 'Juin 2019',
     /* language levels */
     'lng.arabic': 'Arabe', 'lng.arabic.level': 'Langue maternelle',
-    'lng.french': 'Français', 'lng.french.level': 'Bilingue',
+    'lng.french': 'Français', 'lng.french.level': 'Intermédiaire',
     'lng.english': 'Anglais', 'lng.english.level': 'Professionnel',
     /* contact */
     'cc.email.label': 'E-mail', 'cc.email.sub': 'Meilleure façon de me joindre',
